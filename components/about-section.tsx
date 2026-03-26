@@ -33,7 +33,7 @@ export function AboutSection() {
               Your Reliable Partner in Indonesian Exports
             </h2>
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-4 md:mb-6">
-              Jhon Seno Kompany is a dedicated B2B export partner based in Indonesia, 
+              Jhon Seno Company is a dedicated B2B export partner based in Indonesia, 
               specializing in the supply of premium-grade commodities. Built on a foundation 
               of integrity, we connect Indonesia&apos;s finest natural resources with international 
               industry standards.
