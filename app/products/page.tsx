@@ -434,7 +434,9 @@ function ProductsContent() {
                     <Input placeholder="Search products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9 h-9" />
                   </div>
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full sm:w-40 h-9"><SelectValue placeholder="Sort by" /></SelectTrigger>
+                    <SelectTrigger className="w-full sm:w-40 h-9 translate=no"><SelectValue placeholder="Sort by" /></SelectTrigger>
+                    {/* Tambahkan translate="no" 👇 */}
+  <SelectContent translate="no"></SelectContent>
                     <SelectContent>
                       <SelectItem value="newest">Newest</SelectItem>
                       <SelectItem value="name-asc">Name A-Z</SelectItem>
@@ -489,9 +491,13 @@ function ProductsContent() {
           <DialogTitle className="sr-only">Product Details</DialogTitle>
           <DialogDescription className="sr-only">Detailed specs for {selectedProduct?.name}</DialogDescription>
           
-          <DialogClose className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all">
-            <X className="h-5 w-5" />
-          </DialogClose>
+         <DialogClose 
+      translate="no" // <-- Tambahkan ini di sini!
+      className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
+    >
+      <X className="h-5 w-5" />
+      <span className="sr-only" translate="no">Close</span> {/* <-- Tambahkan span ini untuk keamanan ekstra */}
+    </DialogClose>
 
           {selectedProduct && (
             <div className="grid grid-cols-1 lg:grid-cols-2">

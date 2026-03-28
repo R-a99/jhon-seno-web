@@ -97,7 +97,7 @@ export function ContactSection() {
         // Wajib Ganti: Nomor WA Anda (gunakan 62 tanpa + atau 0 di depan)
         const waNumber = "6281390988731" 
         
-        const waText = `Halo Jhon Seno Kompany,
+        const waText = `Halo Jhon Seno Company,
 
 Saya tertarik untuk melakukan inquiry produk ekspor Anda. Berikut detail saya:
 
@@ -223,10 +223,10 @@ Mohon informasi lebih lanjut mengenai spesifikasi dan penawaran harganya. Terima
                     <Field>
                       <FieldLabel>Product Interest *</FieldLabel>
                       <Select name="productInterest" required>
-                        <SelectTrigger>
+                        <SelectTrigger translate="no">
                           <SelectValue placeholder="Select a specific product" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent translate="no">
                           {productCategories.map((group) => (
                             <SelectGroup key={group.category}>
                               <SelectLabel className="text-primary font-bold bg-muted/30">
