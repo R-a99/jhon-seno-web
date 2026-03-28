@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    ignoreBuildErrors: true, // Opsional, mempermudah build awal
+    ignoreBuildErrors: true,
   },
   images: {
     remotePatterns: [
@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'googleusercontent.com',
+      }
     ],
   },
 }
