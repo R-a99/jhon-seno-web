@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Jhon Seno Kompany | Premium Indonesian Export Sourcing",
-  description: "Your trusted B2B partner for high-quality Indonesian commodities. Sourcing premium spices, sustainable bioenergy, and agricultural proteins direct from origin.",
-  // Kamu bisa menambahkan keywords, Open Graph image, dll. di sini.
+  title: 'Jhon Seno Kompany - Premium Indonesian Export Products',
+  description: 'Your trusted partner for premium Indonesian exports product. Spices, biomass, dried insects, coconut briquettes, and specialty coffee.',
+  keywords: ['Indonesian export', 'spices', 'biomass', 'coconut briquettes', 'coffee', 'B2B supplier'],
 }
 
 export default function RootLayout({
