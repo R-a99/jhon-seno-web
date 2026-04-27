@@ -8,39 +8,32 @@ const categories = [
   {
     id: "bioenergy",
     name: "Sustainable Bioenergy",
-    description: "Premium biomass solutions for industrial and residential heating applications",
-    featuredImage: "/images/biomass.jpg",
+    description: "Solusi energi berkelanjutan dari olahan kelapa premium Indonesia.",
+    featuredImage: "/images/coconut-briquettes.jpg",
     products: [
-      { name: "Wood Pellets", image: "/images/biomass.jpg", description: "High-density fuel from sustainably sourced wood waste" },
-      { name: "Coconut Briquettes", image: "/images/coconut-briquettes.jpg", description: "Long-burning, low-smoke charcoal from coconut shells" },
-      { name: "Palm Kernel Shells", image: "/images/palm-kernel-shells.jpg", description: "Sustainable biomass fuel from palm oil processing" },
-      { name: "Rice Husk Pellets", image: "/images/rice-husk-pellets.jpg", description: "Eco-friendly fuel pellets from rice milling byproduct" },
-      { name: "Sawdust Briquettes", image: "/images/sawdust-briquettes.jpg", description: "Compressed wood waste for efficient clean burning" },
+      { name: "Briket Arang Kelapa", image: "/images/coconut-briquettes.jpg", description: "Briket Arang Tempurung Kelapa Premium Indonesia 100% Murni, menghasilkan panas unggul tanpa asap." },
     ],
   },
   {
     id: "spices",
     name: "Premium Spices",
-    description: "Authentic Indonesian spices sourced directly from local farmers",
-    featuredImage: "/images/spices.jpg",
+    description: "Rempah-rempah otentik dan premium yang bersumber langsung dari petani lokal Indonesia.",
+    featuredImage: "/images/cloves.jpg",
     products: [
-      { name: "Turmeric", image: "/images/turmeric.jpg", description: "Golden root with vibrant color and earthy flavor" },
-      { name: "Cloves", image: "/images/cloves.jpg", description: "Aromatic flower buds with intense, warm spice" },
-      { name: "Nutmeg", image: "/images/nutmeg.jpg", description: "Fragrant seed with sweet, nutty undertones" },
-      { name: "Whole Black Pepper", image: "/images/black-pepper.jpg", description: "Bold, pungent spice for culinary excellence" },
+      { name: "Cengkeh", image: "/images/cloves.jpg", description: "Cengkeh utuh berwarna cokelat kemerahan dengan aroma kuat dan rasa pedas manis." },
+      { name: "Kapulaga", image: "/images/cardamom.jpg", description: "Ratu Rempah dengan aroma hangat, segar, dan kadar minyak atsiri yang tinggi." },
+      { name: "Temulawak", image: "/images/temulawak.jpg", description: "Raja jamu berkualitas unggul dengan kandungan bioaktif maksimal untuk kesehatan." },
     ],
   },
   {
     id: "agriculture",
-    name: "Agriculture & Proteins",
-    description: "Sustainable protein sources and innovative agricultural products",
-    featuredImage: "/images/dried-insects.jpg",
+    name: "Agriculture & Coco Products",
+    description: "Produk pertanian berkelanjutan dan turunan kelapa berkualitas ekspor.",
+    featuredImage: "/images/cocopeat.jpg",
     products: [
-      { name: "Dried Insects", image: "/images/dried-insects.jpg", description: "High-protein sustainable feed for aquaculture and poultry" },
-      { name: "Cassava Chips", image: "/images/cassava-chips.jpg", description: "Premium dried tapioca for food and industrial use" },
-      { name: "Copra", image: "/images/copra.jpg", description: "Dried coconut meat for oil extraction and processing" },
-      { name: "Crude Palm Oil", image: "/images/crude-palm-oil.jpg", description: "Sustainably sourced vegetable oil for food industry" },
-      { name: "Arabica Coffee", image: "/images/coffee.jpg", description: "Single-origin specialty coffee from Sumatra highlands" },
+      { name: "Cocopeat", image: "/images/cocopeat.jpg", description: "Media tanam alami yang 100% terbarukan dan ramah lingkungan." },
+      { name: "Cocofiber", image: "/images/cocofiber.jpg", description: "Serat kelapa berkualitas unggul yang tahan lama dan serbaguna." },
+      { name: "Kopi Robusta", image: "/images/coffee.jpg", description: "Kopi Robusta berkualitas dari dataran rendah Indonesia dengan rasa bold." },
     ],
   },
 ]
@@ -49,15 +42,16 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-16 md:py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Header */}
-        <div className="max-w-2xl mb-10 md:mb-16">
+        
+        {/* --- HEADER RATA TENGAH --- */}
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 md:mb-20">
           <p className="text-primary text-xs md:text-sm font-semibold tracking-widest uppercase mb-2 md:mb-3 font-[family-name:var(--font-heading)]">
             Our Products
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 md:mb-4 text-balance font-[family-name:var(--font-heading)]">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 md:mb-5 text-balance font-[family-name:var(--font-heading)]">
             Premium Export Categories
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl">
             We specialize in sourcing and exporting Indonesia&apos;s finest natural products 
             to meet the demands of global markets.
           </p>
@@ -80,9 +74,8 @@ export function ProductsSection() {
                 </a>
               </div>
 
-              {/* Category Grid: Mobile stacked (featured on top), Desktop side-by-side */}
+              {/* Category Grid */}
               <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-6">
-                {/* Large Featured Card - Full width on mobile, left side on desktop */}
                 <div className="w-full md:col-span-5 relative rounded-xl md:rounded-2xl overflow-hidden aspect-[16/10] md:aspect-[4/3] lg:aspect-auto lg:min-h-[400px] group/featured">
                   <Image
                     src={category.featuredImage}
@@ -110,7 +103,6 @@ export function ProductsSection() {
                   </div>
                 </div>
 
-                {/* Small Product Cards Grid - 2 columns on mobile, right side on desktop */}
                 <div className="w-full md:col-span-7 grid grid-cols-2 gap-3 md:gap-4">
                   {category.products.map((product, idx) => (
                     <div 
@@ -125,14 +117,12 @@ export function ProductsSection() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/80 via-[#001a33]/30 to-transparent" />
                       
-                      {/* Product Label */}
                       <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                         <span className="inline-block bg-primary text-primary-foreground text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-md md:rounded-lg font-[family-name:var(--font-heading)]">
                           {product.name}
                         </span>
                       </div>
 
-                      {/* Hover Overlay with Request Quote - Hidden on mobile touch devices */}
                       <div className="absolute inset-0 bg-primary/90 hidden md:flex flex-col items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                         <h5 className="text-white font-bold text-base lg:text-lg mb-2 font-[family-name:var(--font-heading)]">
                           {product.name}

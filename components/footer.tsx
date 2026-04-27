@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Jhon Seno ompany</h3>
+            <h3 className="text-2xl font-bold mb-4">Jhon Seno Company</h3>
             <p className="text-primary-foreground/80 leading-relaxed max-w-md">
               Your Trusted Source for High-Quality Indonesian Export Products. From Specialty Coffee to Sustainable Bioenergy All Meeting Your Market Standards
             </p>
@@ -64,7 +64,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 pb-4 md:pb-6">
           <p className="text-primary-foreground/60 text-sm text-center">
-            &copy; {new Date().getFullYear()} Jhon Seno Kompany. All rights reserved.
+            &copy; {new Date().getFullYear()} Jhon Seno Company. All rights reserved.
           </p>
         </div>
       </div>

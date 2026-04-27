@@ -26,20 +26,20 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-24 pb-16">
-        <div className="max-w-4xl">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-24 pb-16 flex justify-center">
+        <div className="max-w-4xl text-center flex flex-col items-center">
           <p className="text-primary-foreground/80 text-xs md:text-sm lg:text-base font-medium tracking-widest uppercase mb-4 md:mb-6">
             Trusted Sourcing Specialist
           </p>
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-foreground leading-tight mb-6 md:mb-8 text-balance font-[family-name:var(--font-heading)]">
             Your Gateway to Premium Indonesian Commodities
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-primary-foreground/90 mb-8 md:mb-10 max-w-3xl leading-relaxed font-sans">
+          <p className="text-base md:text-lg lg:text-xl text-primary-foreground/90 mb-8 md:mb-10 max-w-3xl leading-relaxed font-sans mx-auto">
             Your Trusted Source for High-Quality Indonesian Export Products. From Specialty 
             Coffee to Sustainable Bioenergy All Meeting Your Market Standards
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 mb-16 justify-center w-full">
             <Button size="lg" variant="outline" asChild className="text-base bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <Link href="#products">
                 Explore Products
@@ -54,7 +54,7 @@ export function HeroSection() {
           </div>
 
           {/* Value Propositions - Mobile: 2x2 Grid, Desktop: Horizontal Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 pt-10 border-t border-primary-foreground/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 pt-10 border-t border-primary-foreground/20 w-full">
             {valueProps.map((item, index) => (
               <div 
                 key={index} 

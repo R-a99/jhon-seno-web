@@ -39,262 +39,117 @@ import { ChevronDown, Search, SlidersHorizontal, X, ZoomIn } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-// --- DATA PRODUCTS (Tetap Sama) ---
+// --- DATA PRODUCTS ---
 const allProducts = [
   {
-    id: "wood-pellets",
-    name: "Wood Pellets",
-    category: "Bioenergy",
-    image: "/images/biomass.jpg",
-    badge: "Premium",
-    moq: "20 Tons",
-    description: "Premium-grade wood pellets sourced from sustainably managed forests in Central Java. Our pellets deliver consistent heat output and low ash content, ideal for industrial boilers and residential heating systems across Europe and North America.",
-    specifications: [
-      { label: "Grade", value: "ENplus A1" },
-      { label: "Moisture Content", value: "≤ 8%" },
-      { label: "Calorific Value", value: "≥ 16.5 MJ/kg" },
-      { label: "Ash Content", value: "≤ 0.7%" },
-      { label: "Diameter", value: "6mm / 8mm" },
-    ],
-  },
-  {
-    id: "coconut-briquettes",
-    name: "Coconut Briquettes",
+    id: "briket-arang-kelapa",
+    name: "Briket Arang Kelapa",
     category: "Bioenergy",
     image: "/images/coconut-briquettes.jpg",
+    badge: "Premium",
+    moq: "10 Tons",
+    description: "Briket Arang Tempurung Kelapa Premium Indonesia 100% Murni, Kualitas Ekspor, Energi Berkelanjutan. Dibuat secara eksklusif dari tempurung kelapa matang pilihan, briket kami menghasilkan panas yang unggul, abu rendah, dan waktu pembakaran yang lebih lama tanpa asap, bau, atau percikan api.",
+    specifications: [
+      { label: "Bentuk & Ukuran", value: "Kubus/Heksagonal/Silinder/Dome ± 15-40 mm" },
+      { label: "Kadar Air", value: "± 5 - 8%" },
+      { label: "Kandungan Abu", value: "± 2 - 8%" },
+      { label: "Karbon Tetap", value: "± 70 - 85%" },
+      { label: "Nilai Kalor", value: "± 5000 - 8000 kcl/kg" },
+      { label: "Waktu Bakar", value: "± 1 - 2.5 jam" },
+    ],
+  },
+  {
+    id: "cocopeat",
+    name: "Cocopeat",
+    category: "Agriculture",
+    image: "/images/cocopeat.jpg",
     badge: "Sourced Direct",
     moq: "10 Tons",
-    description: "High-quality coconut shell charcoal briquettes from Sulawesi, crafted for premium BBQ and hookah applications. Our briquettes offer extended burn time with minimal smoke and spark, meeting stringent international quality standards.",
+    description: "Cocopeat Premium Indonesia media tanam alami yang sempurna. Diproses dengan cermat dari sabut kelapa matang, cocopeat kami 100% alami, terbarukan, dan ramah lingkungan pilihan berkelanjutan yang dipercaya oleh para petani profesional. Dicuci dua kali dan di-buffer, steril, bebas patogen.",
     specifications: [
-      { label: "Grade", value: "Export Premium" },
-      { label: "Moisture Content", value: "≤ 5%" },
-      { label: "Ash Content", value: "≤ 2.5%" },
-      { label: "Burning Time", value: "≥ 2.5 hours" },
-      { label: "Shape", value: "Cube / Hexagonal / Finger" },
+      { label: "Bentuk", value: "Blok kompres 5kg, Bale 15 - 25 kg" },
+      { label: "Kadar Air", value: "± 10 - 20%" },
+      { label: "Electrical Conductivity", value: "± 0.5 - 1.0 mS/cm" },
+      { label: "Volume", value: "± 60 - 85 liter/5kg" },
+      { label: "pH", value: "5.5 - 7.0" },
     ],
   },
   {
-    id: "palm-kernel-shells",
-    name: "Palm Kernel Shells",
-    category: "Bioenergy",
-    image: "/images/palm-kernel-shells.jpg",
+    id: "cocofiber",
+    name: "Cocofiber",
+    category: "Agriculture",
+    image: "/images/cocofiber.jpg",
     badge: "Premium",
-    moq: "50 Tons",
-    description: "Premium palm kernel shells (PKS) sourced from certified sustainable palm oil mills in Kalimantan. Our PKS provides excellent calorific value for industrial boilers and power generation, meeting European sustainability standards.",
+    moq: "10 Tons",
+    description: "Cocofiber berkualitas unggul yang dibuat dari serat kelapa matang pilihan. Seratnya panjang, kuat, dan elastis berkat kandungan lignin alami yang tinggi. Tahan terhadap air asin, panas, dan jamur, sangat cocok untuk media tanam, stabilisasi lereng, atau pembuatan produk premium.",
     specifications: [
-      { label: "Grade", value: "Export Grade A" },
-      { label: "Moisture Content", value: "≤ 15%" },
-      { label: "Calorific Value", value: "≥ 16.0 MJ/kg" },
-      { label: "Ash Content", value: "≤ 3%" },
-      { label: "Shell Size", value: "15-25mm" },
+      { label: "Kadar Air", value: "± 15 - 20% (Maksimal 20%)" },
+      { label: "Kemurnian", value: "± 2 - 5%" },
+      { label: "Kandungan Debu", value: "± 2 - 5%" },
+      { label: "Warna", value: "Golden yellow / Bright brown / Natural brown" },
+      { label: "Berat per Bale", value: "80 - 120 kg" },
     ],
   },
   {
-    id: "rice-husk-pellets",
-    name: "Rice Husk Pellets",
-    category: "Bioenergy",
-    image: "/images/rice-husk-pellets.jpg",
-    badge: "Sourced Direct",
-    moq: "25 Tons",
-    description: "Eco-friendly rice husk pellets from Java's rice milling districts. These compressed pellets transform agricultural waste into efficient renewable fuel, ideal for industrial heating and co-firing applications.",
-    specifications: [
-      { label: "Grade", value: "Industrial Grade" },
-      { label: "Moisture Content", value: "≤ 10%" },
-      { label: "Calorific Value", value: "≥ 14.5 MJ/kg" },
-      { label: "Ash Content", value: "≤ 18%" },
-      { label: "Diameter", value: "6mm / 8mm" },
-    ],
-  },
-  {
-    id: "sawdust-briquettes",
-    name: "Sawdust Briquettes",
-    category: "Bioenergy",
-    image: "/images/sawdust-briquettes.jpg",
-    badge: "Premium",
-    moq: "15 Tons",
-    description: "Compressed sawdust briquettes from certified sustainable forestry operations in Central Java. Our briquettes offer consistent burning with high heat output and minimal residue, perfect for industrial and commercial heating.",
-    specifications: [
-      { label: "Grade", value: "Premium Export" },
-      { label: "Moisture Content", value: "≤ 8%" },
-      { label: "Calorific Value", value: "≥ 17.0 MJ/kg" },
-      { label: "Ash Content", value: "≤ 1.5%" },
-      { label: "Shape", value: "Pini-Kay / Nestro" },
-    ],
-  },
-  {
-    id: "turmeric",
-    name: "Turmeric",
+    id: "kapulaga",
+    name: "Kapulaga",
     category: "Spices",
-    image: "/images/turmeric.jpg",
+    image: "/images/cardamom.jpg",
+    badge: "Sourced Direct",
+    moq: "500 Kg",
+    description: "Dari pegunungan tropis Indonesia yang hijau, tumbuh kapulaga berkualitas unggul. Diproses secara alami dan dikeringkan hati-hati agar aroma hangat, segar, manis, dan sedikit pedasnya terjaga. Memiliki kadar minyak atsiri dan 1,8-cineole yang melimpah.",
+    specifications: [
+      { label: "Kadar Air", value: "± 8 - 12%" },
+      { label: "Kandungan Minyak Atsiri", value: "± 2.0 - 4.5%" },
+      { label: "Kemurnian", value: "± 0.5 - 2%" },
+      { label: "Warna", value: "Hijau mengkilap, cokelat muda" },
+    ],
+  },
+  {
+    id: "temulawak",
+    name: "Temulawak",
+    category: "Spices",
+    image: "/images/temulawak.jpg",
     badge: "Premium",
     moq: "1 Ton",
-    description: "Vibrant, high-curcumin turmeric sourced from organic farms in West Java. Our turmeric delivers intense golden color and earthy flavor, perfect for food processing, pharmaceutical applications, and natural colorant industries.",
+    description: "Rimpang temulawak terbaik (Raja Jamu) dari petani lokal, dikeringkan alami agar kandungan bioaktifnya terjaga. Memiliki khasiat luar biasa dengan kandungan curcuminoid dan xanthorrhizol tinggi untuk mendukung kesehatan hati, pencernaan, dan antioksidan.",
     specifications: [
-      { label: "Grade", value: "Export Grade A" },
-      { label: "Curcumin Content", value: "≥ 3.5%" },
-      { label: "Moisture Content", value: "≤ 12%" },
-      { label: "Purity", value: "99.5%" },
-      { label: "Form", value: "Whole / Powder / Sliced" },
+      { label: "Kadar Air", value: "± 8 - 14%" },
+      { label: "Kandungan Minyak Atsiri", value: "± 1 - 2%" },
+      { label: "Kandungan Kurkuminoid", value: "± 1 - 2.5%" },
+      { label: "Kemurnian", value: "± 0.5 - 2%" },
+      { label: "Ukuran Irisan", value: "± 3 - 6 mm" },
     ],
   },
   {
-    id: "cloves",
-    name: "Cloves",
+    id: "cengkeh",
+    name: "Cengkeh",
     category: "Spices",
     image: "/images/cloves.jpg",
-    badge: "Sourced Direct",
-    moq: "500 Kg",
-    description: "Aromatic whole cloves from the renowned spice gardens of Maluku. Hand-picked and sun-dried to preserve essential oil content, our cloves are ideal for culinary, cigarette manufacturing, and essential oil extraction industries.",
-    specifications: [
-      { label: "Grade", value: "Hand-Picked Select" },
-      { label: "Essential Oil Content", value: "≥ 17%" },
-      { label: "Moisture Content", value: "≤ 12%" },
-      { label: "Purity", value: "99%" },
-      { label: "Size", value: "12-16mm" },
-    ],
-  },
-  {
-    id: "nutmeg",
-    name: "Nutmeg",
-    category: "Spices",
-    image: "/images/nutmeg.jpg",
     badge: "Premium",
     moq: "500 Kg",
-    description: "Premium whole nutmeg seeds from the fertile volcanic soils of Maluku. Our nutmeg offers rich, warm aromatic notes with high essential oil content, suitable for food processing and pharmaceutical applications.",
+    description: "Cengkeh terbaik dari tanah Indonesia (Maluku, Sulawesi, Jawa). Dipetik dengan tangan dan dikeringkan secara alami. Memiliki warna cokelat kemerahan yang indah dengan aroma kuat serta kadar minyak atsiri dan eugenol tinggi.",
     specifications: [
-      { label: "Grade", value: "ABCD / Shrivels" },
-      { label: "Essential Oil Content", value: "≥ 7%" },
-      { label: "Moisture Content", value: "≤ 10%" },
-      { label: "Defect Rate", value: "≤ 5%" },
-      { label: "Size", value: "80-100 nuts/kg" },
-    ],
-  },
-  {
-    id: "black-pepper",
-    name: "Whole Black Pepper",
-    category: "Spices",
-    image: "/images/black-pepper.jpg",
-    badge: "Sourced Direct",
-    moq: "1 Ton",
-    description: "Bold, pungent whole black pepper from the highlands of Lampung. Our pepper delivers exceptional piperine content and robust flavor profile, meeting the exacting standards of international spice traders and food manufacturers.",
-    specifications: [
-      { label: "Grade", value: "FAQ / ASTA" },
-      { label: "Piperine Content", value: "≥ 4%" },
-      { label: "Moisture Content", value: "≤ 13%" },
-      { label: "Density", value: "500-550 g/L" },
-      { label: "Size", value: "4-5mm average" },
-    ],
-  },
-  {
-    id: "dried-insects",
-    name: "Dried Insects",
-    category: "Agriculture",
-    image: "/images/dried-insects.jpg",
-    badge: "Premium",
-    moq: "500 Kg",
-    description: "Sustainably farmed dried insects from controlled facilities in Central Java. Our insect protein products offer an eco-friendly alternative for aquaculture feed, poultry nutrition, and pet food industries with superior amino acid profiles.",
-    specifications: [
-      { label: "Protein Content", value: "≥ 55%" },
-      { label: "Fat Content", value: "25-30%" },
-      { label: "Moisture Content", value: "≤ 10%" },
-      { label: "Form", value: "Whole / Powder / Oil" },
-      { label: "Species", value: "BSF Larvae / Crickets" },
-    ],
-  },
-  {
-    id: "cassava-chips",
-    name: "Cassava Chips",
-    category: "Agriculture",
-    image: "/images/cassava-chips.jpg",
-    badge: "Sourced Direct",
-    moq: "25 Tons",
-    description: "Premium dried cassava chips (tapioca) from the fertile fields of East Java. Our chips are ideal for animal feed, ethanol production, and starch manufacturing, meeting international food safety and quality standards.",
-    specifications: [
-      { label: "Grade", value: "Export Grade A" },
-      { label: "Starch Content", value: "≥ 65%" },
-      { label: "Moisture Content", value: "≤ 14%" },
-      { label: "Sand/Silica", value: "≤ 2%" },
-      { label: "Size", value: "2-5cm chips" },
-    ],
-  },
-  {
-    id: "copra",
-    name: "Copra",
-    category: "Agriculture",
-    image: "/images/copra.jpg",
-    badge: "Premium",
-    moq: "20 Tons",
-    description: "High-quality dried copra from the coconut plantations of Sulawesi. Our copra offers excellent oil content for coconut oil extraction, suitable for food processing, cosmetics, and industrial applications.",
-    specifications: [
-      { label: "Grade", value: "FAQ / Milling Grade" },
-      { label: "Oil Content", value: "≥ 63%" },
-      { label: "Moisture Content", value: "≤ 6%" },
-      { label: "Free Fatty Acid", value: "≤ 1%" },
-      { label: "Form", value: "Whole / Chips" },
-    ],
-  },
-  {
-    id: "crude-palm-oil",
-    name: "Crude Palm Oil",
-    category: "Agriculture",
-    image: "/images/crude-palm-oil.jpg",
-    badge: "Sourced Direct",
-    moq: "100 Tons",
-    description: "Sustainably sourced crude palm oil (CPO) from RSPO-certified plantations in Sumatra. Our CPO meets international standards for food-grade vegetable oil, suitable for refining, cooking oil, and oleochemical production.",
-    specifications: [
-      { label: "Grade", value: "RSPO Certified" },
-      { label: "FFA Content", value: "≤ 5%" },
-      { label: "Moisture", value: "≤ 0.2%" },
-      { label: "Iodine Value", value: "50-55" },
-      { label: "Carotene", value: "500-700 ppm" },
-    ],
-  },
-  {
-    id: "arabica-coffee",
-    name: "Arabica Coffee",
-    category: "Agriculture",
-    image: "/images/coffee.jpg",
-    badge: "Premium",
-    moq: "1 Ton",
-    description: "Single-origin Arabica coffee beans from the highlands of Sumatra. Our specialty-grade beans offer complex flavor notes with earthy undertones and low acidity, preferred by premium roasters and specialty coffee importers worldwide.",
-    specifications: [
-      { label: "Grade", value: "Specialty Grade 1" },
-      { label: "Altitude", value: "1200-1600 MASL" },
-      { label: "Moisture Content", value: "11-12%" },
-      { label: "Defect Count", value: "≤ 5 per 300g" },
-      { label: "Processing", value: "Wet-Hulled / Washed" },
+      { label: "Kadar Air", value: "± 8 - 13%" },
+      { label: "Kandungan Minyak Atsiri", value: "± 12 - 20%" },
+      { label: "Kemurnian", value: "± 0.5 - 2%" },
+      { label: "Warna", value: "Cokelat kemerahan, Hitam mengkilap, Coklat standar" },
     ],
   },
   {
     id: "robusta-coffee",
-    name: "Robusta Coffee",
+    name: "Kopi Robusta",
     category: "Agriculture",
     image: "/images/coffee.jpg",
     badge: "Sourced Direct",
     moq: "2 Tons",
-    description: "High-quality Robusta coffee beans from the fertile lowlands of Lampung. Our beans deliver bold, full-bodied flavor with high caffeine content, ideal for expense blends and instant coffee manufacturing.",
+    description: "High-quality Robusta coffee beans from the fertile lowlands of Indonesia. Our beans deliver bold, full-bodied flavor with high caffeine content, ideal for espresso blends and instant coffee manufacturing.",
     specifications: [
       { label: "Grade", value: "EK1 / Grade 4" },
       { label: "Altitude", value: "400-800 MASL" },
       { label: "Moisture Content", value: "12-13%" },
       { label: "Defect Count", value: "≤ 60 per 300g" },
       { label: "Processing", value: "Natural / Washed" },
-    ],
-  },
-  {
-    id: "cinnamon",
-    name: "Cinnamon Sticks",
-    category: "Spices",
-    image: "/images/cinnamon.jpg",
-    badge: "Premium",
-    moq: "500 Kg",
-    description: "Fragrant cinnamon sticks (Cassia) from the forests of West Sumatra. Our cinnamon delivers sweet, warm aromatics with high cinnamaldehyde content, perfect for food flavoring, beverage industries, and traditional medicine applications.",
-    specifications: [
-      { label: "Grade", value: "KA / KB / KC" },
-      { label: "Cinnamaldehyde", value: "≥ 2%" },
-      { label: "Moisture Content", value: "≤ 14%" },
-      { label: "Length", value: "40-45cm" },
-      { label: "Form", value: "Sticks / Broken / Powder" },
     ],
   },
 ]
@@ -309,7 +164,6 @@ const categoryMap: Record<string, string> = {
 
 type Product = typeof allProducts[number]
 
-// --- KOMPONEN UTAMA (ProductsContent) ---
 function ProductsContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState("")
@@ -321,13 +175,19 @@ function ProductsContent() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [imageZoomed, setImageZoomed] = useState(false)
 
-  useEffect(() => {
+useEffect(() => {
     const categoryParam = searchParams.get("category")
     if (categoryParam) {
       const mappedCategory = categoryMap[categoryParam.toLowerCase()]
-      if (mappedCategory && !selectedCategories.includes(mappedCategory)) {
+      if (mappedCategory) {
+        // Langsung setel state ke kategori yang dipilih dari URL (Footer)
         setSelectedCategories([mappedCategory])
       }
+    } else {
+      // Jika URL tidak memiliki parameter kategori (misal: saat klik "All Products"),
+      // kosongkan semua filter agar semua produk muncul
+      setSelectedCategories([])
+      setSearchQuery("") // (Opsional) membersihkan kolom pencarian juga
     }
   }, [searchParams])
 
@@ -434,10 +294,8 @@ function ProductsContent() {
                     <Input placeholder="Search products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9 h-9" />
                   </div>
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full sm:w-40 h-9 translate=no"><SelectValue placeholder="Sort by" /></SelectTrigger>
-                    {/* Tambahkan translate="no" 👇 */}
-  <SelectContent translate="no"></SelectContent>
-                    <SelectContent>
+                    <SelectTrigger className="w-full sm:w-40 h-9" translate="no"><SelectValue placeholder="Sort by" /></SelectTrigger>
+                    <SelectContent translate="no">
                       <SelectItem value="newest">Newest</SelectItem>
                       <SelectItem value="name-asc">Name A-Z</SelectItem>
                       <SelectItem value="name-desc">Name Z-A</SelectItem>
@@ -487,26 +345,42 @@ function ProductsContent() {
       )}
 
       <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
-        <DialogContent className="w-[95vw] max-w-7xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl" showCloseButton={false}>
+        {/* --- PERUBAHAN: Max width responsif --- */}
+        <DialogContent 
+          className="w-[95vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl" 
+          showCloseButton={false}
+        >
           <DialogTitle className="sr-only">Product Details</DialogTitle>
           <DialogDescription className="sr-only">Detailed specs for {selectedProduct?.name}</DialogDescription>
           
          <DialogClose 
-      translate="no" // <-- Tambahkan ini di sini!
-      className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
-    >
-      <X className="h-5 w-5" />
-      <span className="sr-only" translate="no">Close</span> {/* <-- Tambahkan span ini untuk keamanan ekstra */}
-    </DialogClose>
+            translate="no" 
+            className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
+          >
+            <X className="h-5 w-5" />
+            <span className="sr-only" translate="no">Close</span>
+          </DialogClose>
 
           {selectedProduct && (
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative bg-muted flex flex-col">
-                <div className={`relative aspect-square lg:flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? 'cursor-zoom-out' : ''}`} onClick={() => setImageZoomed(!imageZoomed)}>
-                  <Image src={selectedProduct.image} alt={selectedProduct.name} fill className={`object-contain transition-transform duration-500 ${imageZoomed ? 'scale-150 object-cover' : 'scale-100'}`} />
-                  <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2"><ZoomIn className="h-3 w-3" /> {imageZoomed ? 'Zoom out' : 'Zoom in'}</div>
+              {/* --- PERUBAHAN: Container Gambar Fleksibel & Object Cover --- */}
+              <div className="relative bg-muted flex flex-col min-h-[300px] lg:min-h-full">
+                <div 
+                  className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? 'cursor-zoom-out' : ''}`} 
+                  onClick={() => setImageZoomed(!imageZoomed)}
+                >
+                  <Image 
+                    src={selectedProduct.image} 
+                    alt={selectedProduct.name} 
+                    fill 
+                    className={`object-cover transition-transform duration-500 ${imageZoomed ? 'scale-150' : 'scale-100'}`} 
+                  />
+                  <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
+                    <ZoomIn className="h-3 w-3" /> {imageZoomed ? 'Zoom out' : 'Zoom in'}
+                  </div>
                 </div>
               </div>
+
               <div className="p-6 md:p-12 bg-white flex flex-col">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">{selectedProduct.name}</h2>
                 <div className="flex gap-2 mb-8">
@@ -540,7 +414,6 @@ function ProductsContent() {
   )
 }
 
-// --- WRAPPER DENGAN SUSPENSE (Export Default) ---
 export default function ProductsPage() {
   return (
     <>
