@@ -339,13 +339,11 @@ function ProductsContent() {
                   onClick={() => setSelectedProduct(product)}
                   className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50"
                 >
-                  {/* DIUBAH: aspect-square menjadi aspect-video dan ditambah bg-white agar pas dengan gambar banner Anda */}
                   <div className="relative aspect-video bg-white overflow-hidden border-b border-border/50">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      {/* DIUBAH: object-cover menjadi object-contain */}
                       className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                     <Badge
@@ -356,7 +354,6 @@ function ProductsContent() {
                     </Badge>
                   </div>
                   <div className="p-3">
-                    {/* ✅ FIX 3: Semua text node di card dibungkus span notranslate */}
                     <h3 className="font-semibold text-sm mb-1 line-clamp-1">
                       <span translate="no">{product.name}</span>
                     </h3>
@@ -406,11 +403,6 @@ function ProductsContent() {
       {/* ✅ FIX 4: Wrap Dialog dengan ErrorBoundary agar halaman tidak crash total */}
       <ErrorBoundary>
         <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
-          {/*
-           * ✅ FIX 5: Tambahkan translate="no" dan class "notranslate" pada DialogContent
-           * Ini mencegah Google Translate memodifikasi DOM di dalam modal
-           * yang menyebabkan React crash saat menutup modal.
-           */}
           <DialogContent
             className="w-[95vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl notranslate"
             showCloseButton={false}
@@ -432,7 +424,6 @@ function ProductsContent() {
             {selectedProduct && (
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Image Panel */}
-                {/* DIUBAH: bg-muted menjadi bg-white agar warna background banner menyatu */}
                 <div className="relative bg-white flex flex-col min-h-[300px] lg:min-h-full">
                   <div
                     className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? "cursor-zoom-out" : ""}`}
@@ -442,12 +433,10 @@ function ProductsContent() {
                       src={selectedProduct.image}
                       alt={selectedProduct.name}
                       fill
-                      {/* DIUBAH: object-cover menjadi object-contain agar utuh di popup */}
                       className={`object-contain transition-transform duration-500 ${imageZoomed ? "scale-150" : "scale-100"}`}
                     />
                     <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
                       <ZoomIn className="h-3 w-3" />
-                      {/* ✅ FIX 6: Bungkus teks zoom dengan span notranslate */}
                       <span translate="no">{imageZoomed ? "Zoom out" : "Zoom in"}</span>
                     </div>
                   </div>
@@ -456,7 +445,6 @@ function ProductsContent() {
                 {/* Detail Panel */}
                 <div className="p-6 md:p-12 bg-white flex flex-col">
                   <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
-                    {/* ✅ FIX 7: Semua text node di dalam modal dibungkus span notranslate */}
                     <span translate="no">{selectedProduct.name}</span>
                   </h2>
 
