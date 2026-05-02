@@ -339,12 +339,14 @@ function ProductsContent() {
                   onClick={() => setSelectedProduct(product)}
                   className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50"
                 >
-                  <div className="relative aspect-square overflow-hidden">
+                  {/* DIUBAH: aspect-square menjadi aspect-video dan ditambah bg-white agar pas dengan gambar banner Anda */}
+                  <div className="relative aspect-video bg-white overflow-hidden border-b border-border/50">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      {/* DIUBAH: object-cover menjadi object-contain */}
+                      className="object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                     <Badge
                       className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}
@@ -430,7 +432,8 @@ function ProductsContent() {
             {selectedProduct && (
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Image Panel */}
-                <div className="relative bg-muted flex flex-col min-h-[300px] lg:min-h-full">
+                {/* DIUBAH: bg-muted menjadi bg-white agar warna background banner menyatu */}
+                <div className="relative bg-white flex flex-col min-h-[300px] lg:min-h-full">
                   <div
                     className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? "cursor-zoom-out" : ""}`}
                     onClick={() => setImageZoomed(!imageZoomed)}
@@ -439,7 +442,8 @@ function ProductsContent() {
                       src={selectedProduct.image}
                       alt={selectedProduct.name}
                       fill
-                      className={`object-cover transition-transform duration-500 ${imageZoomed ? "scale-150" : "scale-100"}`}
+                      {/* DIUBAH: object-cover menjadi object-contain agar utuh di popup */}
+                      className={`object-contain transition-transform duration-500 ${imageZoomed ? "scale-150" : "scale-100"}`}
                     />
                     <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
                       <ZoomIn className="h-3 w-3" />
