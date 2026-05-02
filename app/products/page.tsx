@@ -38,6 +38,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ChevronDown, Search, SlidersHorizontal, X, ZoomIn } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+// ✅ FIX 1: Import ErrorBoundary
+import { ErrorBoundary } from "@/components/error-boundary"
 
 // --- DATA PRODUCTS ---
 const allProducts = [
@@ -171,25 +173,28 @@ function ProductsContent() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [categoryOpen, setCategoryOpen] = useState(true)
-  
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [imageZoomed, setImageZoomed] = useState(false)
 
-useEffect(() => {
+  useEffect(() => {
     const categoryParam = searchParams.get("category")
     if (categoryParam) {
       const mappedCategory = categoryMap[categoryParam.toLowerCase()]
       if (mappedCategory) {
-        // Langsung setel state ke kategori yang dipilih dari URL (Footer)
         setSelectedCategories([mappedCategory])
       }
     } else {
-      // Jika URL tidak memiliki parameter kategori (misal: saat klik "All Products"),
-      // kosongkan semua filter agar semua produk muncul
       setSelectedCategories([])
-      setSearchQuery("") // (Opsional) membersihkan kolom pencarian juga
+      setSearchQuery("")
     }
   }, [searchParams])
+
+  // ✅ FIX 2: Reset imageZoomed setiap kali modal dibuka/ditutup
+  useEffect(() => {
+    if (!selectedProduct) {
+      setImageZoomed(false)
+    }
+  }, [selectedProduct])
 
   const toggleFilter = (
     value: string,
@@ -232,7 +237,8 @@ useEffect(() => {
     <div className="space-y-6">
       <Collapsible open={categoryOpen} onOpenChange={setCategoryOpen}>
         <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-semibold text-foreground">
-          Categories
+          {/* ✅ FIX 3: Bungkus teks dengan span notranslate */}
+          <span translate="no">Categories</span>
           <ChevronDown className={`h-4 w-4 transition-transform ${categoryOpen ? "rotate-180" : ""}`} />
         </CollapsibleTrigger>
         <CollapsibleContent className="pt-3 space-y-3">
@@ -242,14 +248,14 @@ useEffect(() => {
                 checked={selectedCategories.includes(category)}
                 onCheckedChange={() => toggleFilter(category, selectedCategories, setSelectedCategories)}
               />
-              {category}
+              <span translate="no">{category}</span>
             </label>
           ))}
         </CollapsibleContent>
       </Collapsible>
       {hasActiveFilters && (
         <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full mt-4">
-          Clear All Filters
+          <span translate="no">Clear All Filters</span>
         </Button>
       )}
     </div>
@@ -260,21 +266,31 @@ useEffect(() => {
       <div className="container mx-auto px-4 lg:px-8 py-6 md:py-10">
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
-            <BreadcrumbItem><BreadcrumbLink asChild><Link href="/">Home</Link></BreadcrumbLink></BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild><Link href="/"><span translate="no">Home</span></Link></BreadcrumbLink>
+            </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem><BreadcrumbPage>All Products</BreadcrumbPage></BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbPage><span translate="no">All Products</span></BreadcrumbPage>
+            </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">All Products</h1>
-          <p className="text-muted-foreground text-sm md:text-base">Browse our complete catalog of premium Indonesian export products</p>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">
+            <span translate="no">All Products</span>
+          </h1>
+          <p className="text-muted-foreground text-sm md:text-base">
+            <span translate="no">Browse our complete catalog of premium Indonesian export products</span>
+          </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-28 bg-background rounded-xl p-6 border border-border">
-              <h2 className="font-semibold text-foreground mb-4">Filters</h2>
+              <h2 className="font-semibold text-foreground mb-4">
+                <span translate="no">Filters</span>
+              </h2>
               <FilterSidebar />
             </div>
           </aside>
@@ -284,17 +300,28 @@ useEffect(() => {
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <Button variant="outline" size="sm" className="lg:hidden" onClick={() => setMobileFiltersOpen(true)}>
-                    <SlidersHorizontal className="h-4 w-4 mr-2" /> Filters
+                    <SlidersHorizontal className="h-4 w-4 mr-2" />
+                    <span translate="no">Filters</span>
                   </Button>
-                  <span className="text-sm text-muted-foreground">{filteredProducts.length} products</span>
+                  <span className="text-sm text-muted-foreground" translate="no">
+                    {filteredProducts.length} products
+                  </span>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <div className="relative flex-1 sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="Search products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9 h-9" />
+                    <Input
+                      placeholder="Search products..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-9 h-9"
+                      translate="no"
+                    />
                   </div>
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full sm:w-40 h-9" translate="no"><SelectValue placeholder="Sort by" /></SelectTrigger>
+                    <SelectTrigger className="w-full sm:w-40 h-9" translate="no">
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
                     <SelectContent translate="no">
                       <SelectItem value="newest">Newest</SelectItem>
                       <SelectItem value="name-asc">Name A-Z</SelectItem>
@@ -307,15 +334,36 @@ useEffect(() => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
               {filteredProducts.map((product) => (
-                <div key={product.id} onClick={() => setSelectedProduct(product)} className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50">
+                <div
+                  key={product.id}
+                  onClick={() => setSelectedProduct(product)}
+                  className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50"
+                >
                   <div className="relative aspect-square overflow-hidden">
-                    <Image src={product.image} alt={product.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <Badge className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}>{product.badge}</Badge>
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <Badge
+                      className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}
+                      translate="no"
+                    >
+                      {product.badge}
+                    </Badge>
                   </div>
                   <div className="p-3">
-                    <h3 className="font-semibold text-sm mb-1 line-clamp-1">{product.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-3">MOQ: {product.moq}</p>
-                    <Button size="sm" className="w-full text-xs">View Details</Button>
+                    {/* ✅ FIX 3: Semua text node di card dibungkus span notranslate */}
+                    <h3 className="font-semibold text-sm mb-1 line-clamp-1">
+                      <span translate="no">{product.name}</span>
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      <span translate="no">MOQ: {product.moq}</span>
+                    </p>
+                    <Button size="sm" className="w-full text-xs">
+                      <span translate="no">View Details</span>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -323,93 +371,145 @@ useEffect(() => {
 
             {filteredProducts.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-muted-foreground mb-4">No products found matching your criteria.</p>
-                <Button variant="outline" onClick={clearAllFilters}>Clear All Filters</Button>
+                <p className="text-muted-foreground mb-4">
+                  <span translate="no">No products found matching your criteria.</span>
+                </p>
+                <Button variant="outline" onClick={clearAllFilters}>
+                  <span translate="no">Clear All Filters</span>
+                </Button>
               </div>
             )}
           </div>
         </div>
       </div>
 
+      {/* Mobile Filters Drawer */}
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileFiltersOpen(false)} />
           <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-background p-6 shadow-xl overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-semibold text-lg">Filters</h2>
-              <Button variant="ghost" size="icon" onClick={() => setMobileFiltersOpen(false)}><X className="h-5 w-5" /></Button>
+              <h2 className="font-semibold text-lg">
+                <span translate="no">Filters</span>
+              </h2>
+              <Button variant="ghost" size="icon" onClick={() => setMobileFiltersOpen(false)}>
+                <X className="h-5 w-5" />
+              </Button>
             </div>
             <FilterSidebar />
           </div>
         </div>
       )}
 
-      <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
-        {/* --- PERUBAHAN: Max width responsif --- */}
-        <DialogContent 
-          className="w-[95vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl" 
-          showCloseButton={false}
-        >
-          <DialogTitle className="sr-only">Product Details</DialogTitle>
-          <DialogDescription className="sr-only">Detailed specs for {selectedProduct?.name}</DialogDescription>
-          
-         <DialogClose 
-            translate="no" 
-            className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
+      {/* ✅ FIX 4: Wrap Dialog dengan ErrorBoundary agar halaman tidak crash total */}
+      <ErrorBoundary>
+        <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+          {/*
+           * ✅ FIX 5: Tambahkan translate="no" dan class "notranslate" pada DialogContent
+           * Ini mencegah Google Translate memodifikasi DOM di dalam modal
+           * yang menyebabkan React crash saat menutup modal.
+           */}
+          <DialogContent
+            className="w-[95vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl notranslate"
+            showCloseButton={false}
+            translate="no"
           >
-            <X className="h-5 w-5" />
-            <span className="sr-only" translate="no">Close</span>
-          </DialogClose>
+            <DialogTitle className="sr-only">Product Details</DialogTitle>
+            <DialogDescription className="sr-only">
+              Detailed specs for {selectedProduct?.name}
+            </DialogDescription>
 
-          {selectedProduct && (
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              {/* --- PERUBAHAN: Container Gambar Fleksibel & Object Cover --- */}
-              <div className="relative bg-muted flex flex-col min-h-[300px] lg:min-h-full">
-                <div 
-                  className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? 'cursor-zoom-out' : ''}`} 
-                  onClick={() => setImageZoomed(!imageZoomed)}
-                >
-                  <Image 
-                    src={selectedProduct.image} 
-                    alt={selectedProduct.name} 
-                    fill 
-                    className={`object-cover transition-transform duration-500 ${imageZoomed ? 'scale-150' : 'scale-100'}`} 
-                  />
-                  <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
-                    <ZoomIn className="h-3 w-3" /> {imageZoomed ? 'Zoom out' : 'Zoom in'}
+            <DialogClose
+              translate="no"
+              className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+
+            {selectedProduct && (
+              <div className="grid grid-cols-1 lg:grid-cols-2">
+                {/* Image Panel */}
+                <div className="relative bg-muted flex flex-col min-h-[300px] lg:min-h-full">
+                  <div
+                    className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? "cursor-zoom-out" : ""}`}
+                    onClick={() => setImageZoomed(!imageZoomed)}
+                  >
+                    <Image
+                      src={selectedProduct.image}
+                      alt={selectedProduct.name}
+                      fill
+                      className={`object-cover transition-transform duration-500 ${imageZoomed ? "scale-150" : "scale-100"}`}
+                    />
+                    <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
+                      <ZoomIn className="h-3 w-3" />
+                      {/* ✅ FIX 6: Bungkus teks zoom dengan span notranslate */}
+                      <span translate="no">{imageZoomed ? "Zoom out" : "Zoom in"}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="p-6 md:p-12 bg-white flex flex-col">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">{selectedProduct.name}</h2>
-                <div className="flex gap-2 mb-8">
-                  <Badge variant="secondary">{selectedProduct.category}</Badge>
-                  <Badge variant="outline">MOQ: {selectedProduct.moq}</Badge>
-                </div>
-                <div className="mb-8">
-                  <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-2">Description</h3>
-                  <p className="text-gray-600 leading-relaxed">{selectedProduct.description}</p>
-                </div>
-                <div className="mb-8">
-                  <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-4">Specifications</h3>
-                  <div className="bg-muted rounded-xl p-4 space-y-2">
-                    {selectedProduct.specifications.map((spec, i) => (
-                      <div key={i} className="flex justify-between border-b border-border/50 py-2 last:border-0">
-                        <span className="font-semibold text-xs md:text-sm">{spec.label}</span>
-                        <span className="text-gray-600 text-xs md:text-sm">{spec.value}</span>
-                      </div>
-                    ))}
+                {/* Detail Panel */}
+                <div className="p-6 md:p-12 bg-white flex flex-col">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
+                    {/* ✅ FIX 7: Semua text node di dalam modal dibungkus span notranslate */}
+                    <span translate="no">{selectedProduct.name}</span>
+                  </h2>
+
+                  <div className="flex gap-2 mb-8">
+                    <Badge variant="secondary" translate="no">
+                      {selectedProduct.category}
+                    </Badge>
+                    <Badge variant="outline" translate="no">
+                      MOQ: {selectedProduct.moq}
+                    </Badge>
                   </div>
+
+                  <div className="mb-8">
+                    <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-2">
+                      <span translate="no">Description</span>
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      <span translate="no">{selectedProduct.description}</span>
+                    </p>
+                  </div>
+
+                  <div className="mb-8">
+                    <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-4">
+                      <span translate="no">Specifications</span>
+                    </h3>
+                    <div className="bg-muted rounded-xl p-4 space-y-2">
+                      {selectedProduct.specifications.map((spec, i) => (
+                        <div
+                          key={i}
+                          className="flex justify-between border-b border-border/50 py-2 last:border-0"
+                        >
+                          <span className="font-semibold text-xs md:text-sm">
+                            <span translate="no">{spec.label}</span>
+                          </span>
+                          <span className="text-gray-600 text-xs md:text-sm">
+                            <span translate="no">{spec.value}</span>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold"
+                  >
+                    <Link href="/#contact">
+                      <span translate="no">REQUEST QUOTE</span>
+                    </Link>
+                  </Button>
                 </div>
-                <Button asChild size="lg" className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold">
-                  <Link href="/#contact">REQUEST QUOTE</Link>
-                </Button>
               </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            )}
+          </DialogContent>
+        </Dialog>
+      </ErrorBoundary>
     </main>
   )
 }
@@ -418,12 +518,14 @@ export default function ProductsPage() {
   return (
     <>
       <Header />
-      <Suspense fallback={
-        <div className="min-h-screen flex flex-col items-center justify-center bg-muted">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#003366] mb-4"></div>
-          <p className="text-muted-foreground font-medium">Loading Products...</p>
-        </div>
-      }>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex flex-col items-center justify-center bg-muted">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#003366] mb-4" />
+            <p className="text-muted-foreground font-medium">Loading Products...</p>
+          </div>
+        }
+      >
         <ProductsContent />
       </Suspense>
       <Footer />
