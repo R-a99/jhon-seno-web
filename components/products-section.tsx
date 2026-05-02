@@ -107,15 +107,17 @@ export function ProductsSection() {
                   {category.products.map((product, idx) => (
                     <div 
                       key={idx} 
-                      className="relative rounded-lg md:rounded-xl overflow-hidden aspect-[4/3] group/card cursor-pointer"
+                      /* DIUBAH: Menggunakan aspect-video (16:9) dan bg-white agar banner tidak terpotong */
+                      className="relative rounded-lg md:rounded-xl overflow-hidden aspect-video bg-white group/card cursor-pointer border border-muted/50"
                     >
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                        /* DIUBAH: object-cover menjadi object-contain memastikan seluruh teks/logo masuk semua tanpa terpotong */
+                        className="object-contain transition-transform duration-500 group-hover/card:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/80 via-[#001a33]/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/80 via-[#001a33]/10 to-transparent" />
                       
                       <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                         <span className="inline-block bg-primary text-primary-foreground text-[10px] md:text-xs font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-md md:rounded-lg font-[family-name:var(--font-heading)]">
@@ -124,7 +126,7 @@ export function ProductsSection() {
                       </div>
 
                       <div className="absolute inset-0 bg-primary/90 hidden md:flex flex-col items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                        <h5 className="text-white font-bold text-base lg:text-lg mb-2 font-[family-name:var(--font-heading)]">
+                        <h5 className="text-white font-bold text-base lg:text-lg mb-2 font-[family-name:var(--font-heading)] text-center px-2">
                           {product.name}
                         </h5>
                         <p className="text-white/80 text-xs text-center px-4 mb-4 line-clamp-2">
