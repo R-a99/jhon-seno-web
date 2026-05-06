@@ -200,7 +200,8 @@ function ProductsContent() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
               {filteredProducts.map((product) => (
-                <Link
+                {/* INI KUNCI ANTI-CRASH: Menggunakan tag <a> standar alih-alih <Link> */}
+                <a
                   href={`/products/${product.id}`}
                   key={product.id}
                   className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50 flex flex-col"
@@ -231,7 +232,7 @@ function ProductsContent() {
                       View Details
                     </div>
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
 
