@@ -86,7 +86,7 @@ export function ContactSection() {
 
         // 3. Siapkan Pesan WhatsApp
         // Wajib Ganti: Nomor WA Anda (gunakan 62 tanpa + atau 0 di depan)
-        const waNumber = "6281390988731" 
+        const waNumber = "6285144911198" 
         
         const waText = `Halo Jhon Seno Company,
 
@@ -154,7 +154,7 @@ Mohon informasi lebih lanjut mengenai spesifikasi dan penawaran harganya. Terima
                 </div>
                 <div>
                   <p className="font-semibold text-foreground mb-1 text-sm md:text-base">Phone / WhatsApp</p>
-                  <p className="text-muted-foreground text-sm md:text-base">+62 812 3456 7890</p>
+                  <p className="text-muted-foreground text-sm md:text-base">+62 85144911198</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 md:gap-4">
