@@ -10,7 +10,7 @@ import { ChevronLeft } from "lucide-react"
 // Import data tersentralisasi (sesuai posisi folder lib kamu)
 import { allProducts } from "../../../lib/products"
 
-// 1. Generate Metadata asinkron (Wajib await params)
+// 1. Generate Metadata asinkron
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const product = allProducts.find((p) => p.id === id)
@@ -33,7 +33,7 @@ export function generateStaticParams() {
   }))
 }
 
-// 3. Komponen Utama asinkron (Wajib await params)
+// 3. Komponen Utama asinkron
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const product = allProducts.find((p) => p.id === id)
@@ -75,33 +75,33 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               {/* Detail Panel */}
               <div className="p-8 md:p-12 flex flex-col">
                 <h1 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
-                  <span translate="no">{product.name}</span>
+                  {product.name}
                 </h1>
 
                 <div className="flex flex-wrap gap-2 mb-8">
-                  <Badge variant="secondary" translate="no" className="bg-primary/10 text-primary">
+                  <Badge variant="secondary" className="bg-primary/10 text-primary">
                     {product.category}
                   </Badge>
-                  <Badge variant="outline" translate="no">
+                  <Badge variant="outline">
                     MOQ: {product.moq}
                   </Badge>
-                  <Badge className={product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"} translate="no">
+                  <Badge className={product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}>
                     {product.badge}
                   </Badge>
                 </div>
 
                 <div className="mb-8">
                   <h2 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-3">
-                    <span translate="no">Description</span>
+                    Description
                   </h2>
                   <p className="text-gray-600 leading-relaxed">
-                    <span translate="no">{product.description}</span>
+                    {product.description}
                   </p>
                 </div>
 
                 <div className="mb-10">
                   <h2 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-4">
-                    <span translate="no">Specifications</span>
+                    Specifications
                   </h2>
                   <div className="bg-muted/50 rounded-xl p-5 space-y-3 border border-border/50">
                     {product.specifications.map((spec, i) => (
@@ -110,10 +110,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         className="flex justify-between border-b border-border/50 pb-3 last:border-0 last:pb-0"
                       >
                         <span className="font-semibold text-sm text-foreground/80">
-                          <span translate="no">{spec.label}</span>
+                          {spec.label}
                         </span>
                         <span className="text-gray-600 text-sm text-right max-w-[60%]">
-                          <span translate="no">{spec.value}</span>
+                          {spec.value}
                         </span>
                       </div>
                     ))}
@@ -127,7 +127,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                     className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold text-base shadow-md hover:shadow-lg transition-all"
                   >
                     <Link href="/#contact">
-                      <span translate="no">REQUEST QUOTE FOR THIS PRODUCT</span>
+                      REQUEST QUOTE FOR THIS PRODUCT
                     </Link>
                   </Button>
                 </div>

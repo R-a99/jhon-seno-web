@@ -1,4 +1,3 @@
-// File: app/products/page.tsx
 "use client"
 
 import { useState, useMemo, useEffect, Suspense } from "react"
@@ -33,7 +32,7 @@ import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-// Ambil data dari lib/products.ts yang sudah kamu buat
+// Ambil data dari lib/products.ts
 import { allProducts } from "../../lib/products"
 
 const categories = ["Bioenergy", "Spices", "Agriculture"]
@@ -106,7 +105,7 @@ function ProductsContent() {
     <div className="space-y-6">
       <Collapsible open={categoryOpen} onOpenChange={setCategoryOpen}>
         <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-semibold text-foreground">
-          <span translate="no">Categories</span>
+          <span>Categories</span>
           <ChevronDown className={`h-4 w-4 transition-transform ${categoryOpen ? "rotate-180" : ""}`} />
         </CollapsibleTrigger>
         <CollapsibleContent className="pt-3 space-y-3">
@@ -116,14 +115,14 @@ function ProductsContent() {
                 checked={selectedCategories.includes(category)}
                 onCheckedChange={() => toggleFilter(category, selectedCategories, setSelectedCategories)}
               />
-              <span translate="no">{category}</span>
+              <span>{category}</span>
             </label>
           ))}
         </CollapsibleContent>
       </Collapsible>
       {hasActiveFilters && (
         <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full mt-4">
-          <span>Clear All Filters</span>
+          Clear All Filters
         </Button>
       )}
     </div>
@@ -135,21 +134,21 @@ function ProductsContent() {
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink asChild><Link href="/"><span>Home</span></Link></BreadcrumbLink>
+              <BreadcrumbLink asChild><Link href="/">Home</Link></BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage><span>All Products</span></BreadcrumbPage>
+              <BreadcrumbPage>All Products</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">
-            <span >All Products</span>
+            All Products
           </h1>
           <p className="text-muted-foreground text-sm md:text-base">
-            <span >Browse our complete catalog of premium Indonesian export products</span>
+            Browse our complete catalog of premium Indonesian export products
           </p>
         </div>
 
@@ -157,7 +156,7 @@ function ProductsContent() {
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-28 bg-background rounded-xl p-6 border border-border">
               <h2 className="font-semibold text-foreground mb-4">
-                <span translate="no">Filters</span>
+                Filters
               </h2>
               <FilterSidebar />
             </div>
@@ -169,9 +168,9 @@ function ProductsContent() {
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <Button variant="outline" size="sm" className="lg:hidden" onClick={() => setMobileFiltersOpen(true)}>
                     <SlidersHorizontal className="h-4 w-4 mr-2" />
-                    <span translate="no">Filters</span>
+                    Filters
                   </Button>
-                  <span className="text-sm text-muted-foreground" translate="no">
+                  <span className="text-sm text-muted-foreground">
                     {filteredProducts.length} products
                   </span>
                 </div>
@@ -183,14 +182,13 @@ function ProductsContent() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="pl-9 h-9"
-                      translate="no"
                     />
                   </div>
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full sm:w-40 h-9" translate="no">
+                    <SelectTrigger className="w-full sm:w-40 h-9">
                       <SelectValue placeholder="Sort by" />
                     </SelectTrigger>
-                    <SelectContent translate="no">
+                    <SelectContent>
                       <SelectItem value="newest">Newest</SelectItem>
                       <SelectItem value="name-asc">Name A-Z</SelectItem>
                       <SelectItem value="name-desc">Name Z-A</SelectItem>
@@ -218,20 +216,19 @@ function ProductsContent() {
                     />
                     <Badge
                       className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}
-                      translate="no"
                     >
                       {product.badge}
                     </Badge>
                   </div>
                   <div className="p-3 flex flex-col flex-grow">
                     <h3 className="font-semibold text-sm mb-1 line-clamp-1">
-                      <span translate="no">{product.name}</span>
+                      {product.name}
                     </h3>
                     <p className="text-xs text-muted-foreground mb-3">
-                      <span translate="no">MOQ: {product.moq}</span>
+                      MOQ: {product.moq}
                     </p>
                     <div className="mt-auto bg-secondary text-secondary-foreground text-xs font-medium py-2 px-4 rounded-md text-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <span >View Details</span>
+                      View Details
                     </div>
                   </div>
                 </Link>
@@ -241,10 +238,10 @@ function ProductsContent() {
             {filteredProducts.length === 0 && (
               <div className="text-center py-16">
                 <p className="text-muted-foreground mb-4">
-                  <span translate="no">No products found matching your criteria.</span>
+                  No products found matching your criteria.
                 </p>
                 <Button variant="outline" onClick={clearAllFilters}>
-                  <span translate="no">Clear All Filters</span>
+                  Clear All Filters
                 </Button>
               </div>
             )}
@@ -259,7 +256,7 @@ function ProductsContent() {
           <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-background p-6 shadow-xl overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="font-semibold text-lg">
-                <span translate="no">Filters</span>
+                Filters
               </h2>
               <Button variant="ghost" size="icon" onClick={() => setMobileFiltersOpen(false)}>
                 <X className="h-5 w-5" />
