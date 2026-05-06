@@ -8,32 +8,32 @@ const categories = [
   {
     id: "bioenergy",
     name: "Sustainable Bioenergy",
-    description: "Solusi energi berkelanjutan dari olahan kelapa premium Indonesia.",
+    description: "Sustainable energy solutions from premium Indonesian coconut products.",
     featuredImage: "/images/bioenergy.png",
     products: [
-      { name: "Briket Arang Kelapa", image: "/images/bricket.png", description: "Briket Arang Tempurung Kelapa Premium Indonesia 100% Murni, menghasilkan panas unggul tanpa asap." },
-      { name: "Cocopeat", image: "/images/cocopeat.png", description: "Media tanam alami yang 100% terbarukan dan ramah lingkungan." },
-      { name: "Cocofiber", image: "/images/cocofiber.png", description: "Serat kelapa berkualitas unggul yang tahan lama dan serbaguna." },
+      { name: "Coconut Shell Charcoal Briquettes", image: "/images/bricket.png", description: "100% Pure Premium Indonesian Coconut Shell Charcoal Briquettes, producing superior smokeless heat." },
+      { name: "Cocopeat", image: "/images/cocopeat.png", description: "100% Renewable and Environmentally Friendly Growing Medium." },
+      { name: "Cocofiber", image: "/images/cocofiber.png", description: "High-Quality Coconut Fiber that is durable and versatile." },
     ],
   },
   {
     id: "spices",
     name: "Premium Spices",
-    description: "Rempah-rempah otentik dan premium yang bersumber langsung dari petani lokal Indonesia.",
+    description: "Authentic and premium spices sourced directly from local Indonesian farmers.",
     featuredImage: "/images/rempah.png",
     products: [
-      { name: "Cengkeh", image: "/images/cengkeh.png", description: "Cengkeh utuh berwarna cokelat kemerahan dengan aroma kuat dan rasa pedas manis." },
-      { name: "Kapulaga", image: "/images/kopilaga.png", description: "Ratu Rempah dengan aroma hangat, segar, dan kadar minyak atsiri yang tinggi." },
-      { name: "Temulawak", image: "/images/temulawak.png", description: "Raja jamu berkualitas unggul dengan kandungan bioaktif maksimal untuk kesehatan." },
+      { name: "Cloves", image: "/images/cengkeh.png", description: "Whole cloves with a rich aroma and sweet-spicy taste." },
+      { name: "Cardamom", image: "/images/kopilaga.png", description: "Premium cardamom with a warm, fresh aroma and high essential oil content." },
+      { name: "Turmeric", image: "/images/temulawak.png", description: "Turmeric with maximum bioactive compounds for health benefits." },
     ],
   },
   {
     id: "agriculture",
     name: "Agriculture",
-    description: "Produk pertanian berkelanjutan berkualitas ekspor.",
+    description: "Sustainable and high-quality agricultural products for export.",
     featuredImage: "/images/kopi1.jpg",
     products: [
-      { name: "Kopi Robusta", image: "/images/kopi.png", description: "Kopi Robusta berkualitas dari dataran rendah Indonesia dengan rasa bold." },
+      { name: "Robusta Coffee", image: "/images/kopi.png", description: "High-quality Robusta coffee from Indonesia's lowlands with a bold flavor." },
     ],
   },
 ]
