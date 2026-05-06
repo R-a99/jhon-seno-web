@@ -1,5 +1,3 @@
-// File: app/products/[id]/page.tsx
-
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,12 +7,13 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ChevronLeft } from "lucide-react"
 
-// Import data tersentralisasi
-import { allProducts } from "@/lib/products"
+// Import data tersentralisasi (sesuai posisi folder lib kamu)
+import { allProducts } from "../../../lib/products"
 
-// INI KUNCI SEO-NYA: Generate Meta Tags otomatis berdasarkan data produk
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const product = allProducts.find((p) => p.id === params.id)
+// 1. Generate Metadata asinkron (Wajib await params)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const product = allProducts.find((p) => p.id === id)
   
   if (!product) return { title: "Product Not Found" }
 
@@ -27,16 +26,17 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-// Fitur Next.js untuk SSG (Static Site Generation) agar performa secepat kilat
+// 2. SSG (Static Site Generation)
 export function generateStaticParams() {
   return allProducts.map((product) => ({
     id: product.id,
   }))
 }
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  // Cari produk berdasarkan URL ID
-  const product = allProducts.find((p) => p.id === params.id)
+// 3. Komponen Utama asinkron (Wajib await params)
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const product = allProducts.find((p) => p.id === id)
 
   if (!product) {
     return notFound()
@@ -57,7 +57,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           <div className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
               
-              {/* Image Panel (Efek zoom disederhanakan menggunakan CSS Hover agar tetap Server-Side) */}
+              {/* Image Panel */}
               <div className="relative bg-[#f8fafc] flex flex-col min-h-[400px] lg:min-h-full border-b lg:border-b-0 lg:border-r border-border p-8 group">
                 <div className="relative flex-1 w-full h-full">
                   <Image
@@ -66,6 +66,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                     fill
                     className="object-contain transition-transform duration-700 group-hover:scale-110"
                     priority
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDMzNjYiLz48L3N2Zz4="
                   />
                 </div>
               </div>
@@ -83,7 +85,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                   <Badge variant="outline" translate="no">
                     MOQ: {product.moq}
                   </Badge>
-                  <Badge className={`${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`} translate="no">
+                  <Badge className={product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"} translate="no">
                     {product.badge}
                   </Badge>
                 </div>
@@ -129,7 +131,6 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                     </Link>
                   </Button>
                 </div>
-
               </div>
             </div>
           </div>

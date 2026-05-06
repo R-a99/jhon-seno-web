@@ -33,8 +33,8 @@ import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-// Import data tersentralisasi
-import { allProducts } from "@/lib/products"
+// Ambil data dari lib/products.ts yang sudah kamu buat
+import { allProducts } from "../../lib/products"
 
 const categories = ["Bioenergy", "Spices", "Agriculture"]
 
@@ -202,7 +202,6 @@ function ProductsContent() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
               {filteredProducts.map((product) => (
-                // DIUBAH: Menggunakan <Link> agar mengarah ke dynamic route SEO Friendly
                 <Link
                   href={`/products/${product.id}`}
                   key={product.id}
@@ -214,6 +213,8 @@ function ProductsContent() {
                       alt={product.name}
                       fill
                       className="object-contain transition-transform duration-500 group-hover:scale-110"
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDMzNjYiLz48L3N2Zz4="
                     />
                     <Badge
                       className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}
