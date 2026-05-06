@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image" // <-- Import komponen Image
 
 const footerLinks = {
   products: [
@@ -20,7 +21,24 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Jhon Seno Company</h3>
+            
+            {/* --- BAGIAN LOGO FOOTER DIPERBARUI --- */}
+            {/* SAYA UBAH PADDING (px-3 py-2) AGAR KOTAKNYA TIDAK TERLALU LEBAR */}
+            <div className="mb-6 bg-white inline-block px-3 py-2 rounded-xl shadow-lg">
+              <Link href="/">
+                {/* SAYA UBAH UKURAN GAMBAR (h-12 w-24) AGAR LEBIH KOTAK/PROPORSIONAL */}
+                <div className="relative h-12 w-24 md:h-14 md:w-28">
+                  <Image 
+                    src="/images/logo.png" 
+                    alt="Jhon Seno Company Logo" 
+                    fill
+                    className="object-contain hover:opacity-90 transition-opacity"
+                  />
+                </div>
+              </Link>
+            </div>
+            {/* ------------------------------ */}
+            
             <p className="text-primary-foreground/80 leading-relaxed max-w-md">
               Your Trusted Source for High-Quality Indonesian Export Products. From Specialty Coffee to Sustainable Bioenergy All Meeting Your Market Standards
             </p>

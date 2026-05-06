@@ -19,41 +19,32 @@ import { Mail, Phone, MapPin, Send } from "lucide-react"
 // --- DATA KATEGORI PRODUK B2B ---
 const productCategories = [
   {
-    category: "Premium Coffee",
-    items: [
-      "Arabica Green Beans",
-      "Roasted Coffee Beans (Custom Roast)"
-    ]
-  },
-  {
     category: "Sustainable Bioenergy",
     items: [
-      "Wood Pellets (Grade A)", 
-      "Coconut Charcoal Briquettes (Cubes)", 
-      "Hexagonal Charcoal", 
-      "Sawdust Pellets",
-      "Rice Husk Pellets"
+      "Coconut Shell Charcoal Briquettes",
+      "Cocopeat",
+      "Cocofiber"
     ]
   },
   {
     category: "Premium Spices",
     items: [
-      "Peppercorns", 
-      "Cloves", 
-      "Nutmeg", 
-      "Whole Spices (Mixed)",
-      "Turmeric Powder"
+      "Cloves",
+      "Cardamom",
+      "Javanese Turmeric"
     ]
   },
   {
-    category: "Agriculture & Proteins",
+    category: "Agriculture",
     items: [
-      "Dried Mealworms", 
-      "Cricket Powder", 
-      "Organic Fertilizer", 
-      "Mealworm Oil",
-      "Animal Feed",
-      "Grain Sorghum"
+      "Robusta Coffee"
+    ]
+  },
+  // Kategori tambahan untuk menonjolkan layanan pencarian produk custom
+  {
+    category: "Bespoke Sourcing",
+    items: [
+      "Custom Product (Please specify in message)"
     ]
   }
 ]
@@ -172,7 +163,7 @@ Mohon informasi lebih lanjut mengenai spesifikasi dan penawaran harganya. Terima
                 </div>
                 <div>
                   <p className="font-semibold text-foreground mb-1 text-sm md:text-base">Office</p>
-                  <p className="text-muted-foreground text-sm md:text-base">Semarang, Central Java, Indonesia</p>
+                  <p className="text-muted-foreground text-sm md:text-base">Temanggung, Central Java, Indonesia</p>
                 </div>
               </div>
             </div>
