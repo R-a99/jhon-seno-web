@@ -123,7 +123,7 @@ function ProductsContent() {
       </Collapsible>
       {hasActiveFilters && (
         <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full mt-4">
-          <span translate="no">Clear All Filters</span>
+          <span>Clear All Filters</span>
         </Button>
       )}
     </div>
@@ -135,21 +135,21 @@ function ProductsContent() {
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink asChild><Link href="/"><span translate="no">Home</span></Link></BreadcrumbLink>
+              <BreadcrumbLink asChild><Link href="/"><span>Home</span></Link></BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage><span translate="no">All Products</span></BreadcrumbPage>
+              <BreadcrumbPage><span>All Products</span></BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">
-            <span translate="no">All Products</span>
+            <span >All Products</span>
           </h1>
           <p className="text-muted-foreground text-sm md:text-base">
-            <span translate="no">Browse our complete catalog of premium Indonesian export products</span>
+            <span >Browse our complete catalog of premium Indonesian export products</span>
           </p>
         </div>
 
@@ -231,7 +231,7 @@ function ProductsContent() {
                       <span translate="no">MOQ: {product.moq}</span>
                     </p>
                     <div className="mt-auto bg-secondary text-secondary-foreground text-xs font-medium py-2 px-4 rounded-md text-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <span translate="no">View Details</span>
+                      <span >View Details</span>
                     </div>
                   </div>
                 </Link>
