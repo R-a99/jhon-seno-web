@@ -17,12 +17,13 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/5">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-white/10 shadow-sm">
       <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        {/* Tinggi header disesuaikan menjadi h-16 secara seragam agar lebih ramping */}
+        <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
-            {/* SAYA UBAH UKURANNYA DI SINI (Lebih besar sedikit) */}
-            <div className="relative h-14 w-28 md:h-16 md:w-32">
+            {/* Ukuran logo diperkecil agar proporsional dengan tinggi header */}
+            <div className="relative h-9 w-20 md:h-10 md:w-24">
               <Image 
                 src="/images/logo.png" 
                 alt="Jhon Seno Company Logo" 
@@ -47,7 +48,7 @@ export function Header() {
           </div>
 
           <div className="hidden lg:block">
-            <Button asChild>
+            <Button asChild size="sm">
               <Link href="#contact">Request Quote</Link>
             </Button>
           </div>
@@ -80,7 +81,7 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Button asChild className="mt-2">
+              <Button asChild className="mt-2 w-full">
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
                   Request Quote
                 </Link>
