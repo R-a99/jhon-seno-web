@@ -130,7 +130,7 @@ const allProducts = [
     image: "/images/cengkeh.png",
     badge: "Premium",
     moq: "500 Kg",
-    description: "Premium cloves from Indonesian soil (Maluku, Sulawesi, Java). Hand-picked and naturally dried. Beautiful reddish-brown color with strong aroma and high essential oil and eugenol content.",
+    description: "Premium cloves from Indonesian soil. Hand-picked and naturally dried. Beautiful reddish-brown color with strong aroma and high essential oil and eugenol content.",
     specifications: [
       { label: "Moisture Content", value: "± 8 - 13%" },
       { label: "Essential Oil Content", value: "± 12 - 20%" },
