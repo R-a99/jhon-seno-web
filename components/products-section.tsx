@@ -4,6 +4,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronRight } from "lucide-react"
 
+// Base64 Blur Placeholder (Navy Blue #003366)
+const blurDataURL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDMzNjYiLz48L3N2Zz4="
+
 const categories = [
   {
     id: "bioenergy",
@@ -43,7 +46,6 @@ export function ProductsSection() {
     <section id="products" className="py-16 md:py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         
-        {/* --- HEADER RATA TENGAH --- */}
         <div className="max-w-3xl mx-auto text-center flex flex-col items-center mb-12 md:mb-20">
           <p className="text-primary text-xs md:text-sm font-semibold tracking-widest uppercase mb-2 md:mb-3 font-[family-name:var(--font-heading)]">
             Our Products
@@ -57,11 +59,9 @@ export function ProductsSection() {
           </p>
         </div>
 
-        {/* Category Sections */}
         <div className="space-y-12 md:space-y-16 lg:space-y-24">
           {categories.map((category) => (
             <div key={category.id} className="group">
-              {/* Category Header */}
               <div className="flex items-center justify-between mb-4 md:mb-6">
                 <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground font-[family-name:var(--font-heading)]">
                   {category.name}
@@ -74,14 +74,16 @@ export function ProductsSection() {
                 </a>
               </div>
 
-              {/* Category Grid */}
               <div className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-6">
+                {/* Featured Image dengan Blur Placeholder */}
                 <div className="w-full md:col-span-5 relative rounded-xl md:rounded-2xl overflow-hidden aspect-[16/10] md:aspect-[4/3] lg:aspect-auto lg:min-h-[400px] group/featured">
                   <Image
                     src={category.featuredImage}
                     alt={category.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover/featured:scale-105"
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/90 via-[#001a33]/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
@@ -107,15 +109,15 @@ export function ProductsSection() {
                   {category.products.map((product, idx) => (
                     <div 
                       key={idx} 
-                      /* DIUBAH: Menggunakan aspect-video (16:9) dan bg-white agar banner tidak terpotong */
                       className="relative rounded-lg md:rounded-xl overflow-hidden aspect-video bg-white group/card cursor-pointer border border-muted/50"
                     >
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        /* DIUBAH: object-cover menjadi object-contain memastikan seluruh teks/logo masuk semua tanpa terpotong */
                         className="object-contain transition-transform duration-500 group-hover/card:scale-105"
+                        placeholder="blur"
+                        blurDataURL={blurDataURL}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#001a33]/80 via-[#001a33]/10 to-transparent" />
                       
@@ -147,7 +149,6 @@ export function ProductsSection() {
           ))}
         </div>
 
-        {/* Bespoke Sourcing Banner */}
         <div className="mt-12 md:mt-16 lg:mt-24 relative rounded-xl md:rounded-2xl overflow-hidden bg-primary">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.2),transparent_50%)]" />

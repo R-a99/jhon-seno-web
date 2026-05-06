@@ -21,6 +21,10 @@ export function HeroSection() {
           fill
           className="object-cover"
           priority
+          /* --- OPTIMASI UX LOADING DITAMBAHKAN DI SINI --- */
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDMzNjYiLz48L3N2Zz4="
+          /* ----------------------------------------------- */
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70" />
       </div>
