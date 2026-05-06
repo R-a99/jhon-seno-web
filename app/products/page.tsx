@@ -1,3 +1,4 @@
+// File: app/products/page.tsx
 "use client"
 
 import { useState, useMemo, useEffect, Suspense } from "react"
@@ -27,134 +28,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import {
-  Dialog,
-  DialogContent,
-  DialogClose,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ChevronDown, Search, SlidersHorizontal, X, ZoomIn } from "lucide-react"
+import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-// ✅ FIX 1: Import ErrorBoundary
-import { ErrorBoundary } from "@/components/error-boundary"
 
-// --- DATA PRODUCTS ---
-const allProducts = [
-  {
-    id: "coconut-shell-charcoal-briquettes",
-    name: "Coconut Shell Charcoal Briquettes",
-    category: "Bioenergy",
-    image: "/images/bricket.png",
-    badge: "Premium",
-    moq: "10 Tons",
-    description: "Premium 100% Pure Indonesian Coconut Shell Charcoal Briquettes, Export Quality, Sustainable Energy. Manufactured exclusively from selected mature coconut shells, our briquettes produce superior heat, low ash, and longer burning time with no smoke, odor, or sparks.",
-    specifications: [
-      { label: "Shape & Size", value: "Cubic/Hexagonal/Cylindrical/Dome ± 15-40 mm" },
-      { label: "Moisture Content", value: "± 5 - 8%" },
-      { label: "Ash Content", value: "± 2 - 8%" },
-      { label: "Fixed Carbon", value: "± 70 - 85%" },
-      { label: "Calorific Value", value: "± 5000 - 8000 kcl/kg" },
-      { label: "Burning Time", value: "± 1 - 2.5 hours" },
-    ],
-  },
-  {
-    id: "cocopeat",
-    name: "Cocopeat",
-    category: "Bioenergy",
-    image: "/images/cocopeat.png",
-    badge: "Sourced Direct",
-    moq: "10 Tons",
-    description: "Premium Indonesia Cocopeat - the perfect natural growing medium. Carefully processed from mature coconut fiber, our cocopeat is 100% natural, renewable, and eco-friendly - a sustainable choice trusted by professional farmers. Double washed and buffered, sterile, pathogen-free.",
-    specifications: [
-      { label: "Form", value: "Compressed blocks 5kg, Bales 15 - 25 kg" },
-      { label: "Moisture Content", value: "± 10 - 20%" },
-      { label: "Electrical Conductivity", value: "± 0.5 - 1.0 mS/cm" },
-      { label: "Volume", value: "± 60 - 85 liter/5kg" },
-      { label: "pH", value: "5.5 - 7.0" },
-    ],
-  },
-  {
-    id: "cocofiber",
-    name: "Cocofiber",
-    category: "Bioenergy",
-    image: "/images/cocofiber.png",
-    badge: "Premium",
-    moq: "10 Tons",
-    description: "Superior quality Cocofiber made from selected mature coconut fibers. The fibers are long, strong, and elastic thanks to high natural lignin content. Resistant to saltwater, heat, and mold - ideal for growing media, slope stabilization, or premium product manufacturing.",
-    specifications: [
-      { label: "Moisture Content", value: "± 15 - 20% (Maximum 20%)" },
-      { label: "Purity", value: "± 2 - 5%" },
-      { label: "Dust Content", value: "± 2 - 5%" },
-      { label: "Color", value: "Golden yellow / Bright brown / Natural brown" },
-      { label: "Weight per Bale", value: "80 - 120 kg" },
-    ],
-  },
-  {
-    id: "cardamom",
-    name: "Cardamom",
-    category: "Spices",
-    image: "/images/kopilaga.png",
-    badge: "Sourced Direct",
-    moq: "500 Kg",
-    description: "From Indonesia's lush tropical mountains grows superior quality cardamom. Naturally processed and carefully dried to preserve warm, fresh, sweet, and slightly spicy aromatic profile. Rich in essential oils and 1,8-cineole content.",
-    specifications: [
-      { label: "Moisture Content", value: "± 8 - 12%" },
-      { label: "Essential Oil Content", value: "± 2.0 - 4.5%" },
-      { label: "Purity", value: "± 0.5 - 2%" },
-      { label: "Color", value: "Shiny green, light brown" },
-    ],
-  },
-  {
-    id: "javanese-turmeric",
-    name: "Javanese Turmeric",
-    category: "Spices",
-    image: "/images/temulawak.png",
-    badge: "Premium",
-    moq: "1 Ton",
-    description: "Premium Javanese Turmeric rhizome (King of Herbs) from local farmers, naturally dried to preserve bioactive compounds. Extraordinary benefits with high curcuminoid and xanthorrhizol content to support liver health, digestion, and antioxidant properties.",
-    specifications: [
-      { label: "Moisture Content", value: "± 8 - 14%" },
-      { label: "Essential Oil Content", value: "± 1 - 2%" },
-      { label: "Curcuminoid Content", value: "± 1 - 2.5%" },
-      { label: "Purity", value: "± 0.5 - 2%" },
-      { label: "Slice Size", value: "± 3 - 6 mm" },
-    ],
-  },
-  {
-    id: "cloves",
-    name: "Cloves",
-    category: "Spices",
-    image: "/images/cengkeh.png",
-    badge: "Premium",
-    moq: "500 Kg",
-    description: "Premium cloves from Indonesian soil. Hand-picked and naturally dried. Beautiful reddish-brown color with strong aroma and high essential oil and eugenol content.",
-    specifications: [
-      { label: "Moisture Content", value: "± 8 - 13%" },
-      { label: "Essential Oil Content", value: "± 12 - 20%" },
-      { label: "Purity", value: "± 0.5 - 2%" },
-      { label: "Color", value: "Reddish-brown, Shiny black, Standard brown" },
-    ],
-  },
-  {
-    id: "robusta-coffee",
-    name: "Robusta Coffee",
-    category: "Agriculture",
-    image: "/images/kopi.png",
-    badge: "Sourced Direct",
-    moq: "2 Tons",
-    description: "High-quality Robusta coffee beans from the fertile lowlands of Indonesia. Our beans deliver bold, full-bodied flavor with high caffeine content, ideal for espresso blends and instant coffee manufacturing.",
-    specifications: [
-      { label: "Grade", value: "EK1 / Grade 4" },
-      { label: "Altitude", value: "400-800 MASL" },
-      { label: "Moisture Content", value: "12-13%" },
-      { label: "Defect Count", value: "≤ 60 per 300g" },
-      { label: "Processing", value: "Natural / Washed" },
-    ],
-  },
-]
+// Import data tersentralisasi
+import { allProducts } from "@/lib/products"
 
 const categories = ["Bioenergy", "Spices", "Agriculture"]
 
@@ -164,8 +44,6 @@ const categoryMap: Record<string, string> = {
   agriculture: "Agriculture",
 }
 
-type Product = typeof allProducts[number]
-
 function ProductsContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState("")
@@ -173,8 +51,6 @@ function ProductsContent() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [categoryOpen, setCategoryOpen] = useState(true)
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const [imageZoomed, setImageZoomed] = useState(false)
 
   useEffect(() => {
     const categoryParam = searchParams.get("category")
@@ -188,13 +64,6 @@ function ProductsContent() {
       setSearchQuery("")
     }
   }, [searchParams])
-
-  // ✅ FIX 2: Reset imageZoomed setiap kali modal dibuka/ditutup
-  useEffect(() => {
-    if (!selectedProduct) {
-      setImageZoomed(false)
-    }
-  }, [selectedProduct])
 
   const toggleFilter = (
     value: string,
@@ -237,7 +106,6 @@ function ProductsContent() {
     <div className="space-y-6">
       <Collapsible open={categoryOpen} onOpenChange={setCategoryOpen}>
         <CollapsibleTrigger className="flex items-center justify-between w-full py-2 text-sm font-semibold text-foreground">
-          {/* ✅ FIX 3: Bungkus teks dengan span notranslate */}
           <span translate="no">Categories</span>
           <ChevronDown className={`h-4 w-4 transition-transform ${categoryOpen ? "rotate-180" : ""}`} />
         </CollapsibleTrigger>
@@ -334,10 +202,11 @@ function ProductsContent() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
               {filteredProducts.map((product) => (
-                <div
+                // DIUBAH: Menggunakan <Link> agar mengarah ke dynamic route SEO Friendly
+                <Link
+                  href={`/products/${product.id}`}
                   key={product.id}
-                  onClick={() => setSelectedProduct(product)}
-                  className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50"
+                  className="group bg-background rounded-xl border border-border overflow-hidden hover:shadow-lg transition-all cursor-pointer hover:border-primary/50 flex flex-col"
                 >
                   <div className="relative aspect-video bg-white overflow-hidden border-b border-border/50">
                     <Image
@@ -353,18 +222,18 @@ function ProductsContent() {
                       {product.badge}
                     </Badge>
                   </div>
-                  <div className="p-3">
+                  <div className="p-3 flex flex-col flex-grow">
                     <h3 className="font-semibold text-sm mb-1 line-clamp-1">
                       <span translate="no">{product.name}</span>
                     </h3>
                     <p className="text-xs text-muted-foreground mb-3">
                       <span translate="no">MOQ: {product.moq}</span>
                     </p>
-                    <Button size="sm" className="w-full text-xs">
+                    <div className="mt-auto bg-secondary text-secondary-foreground text-xs font-medium py-2 px-4 rounded-md text-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                       <span translate="no">View Details</span>
-                    </Button>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -399,109 +268,6 @@ function ProductsContent() {
           </div>
         </div>
       )}
-
-      {/* ✅ FIX 4: Wrap Dialog dengan ErrorBoundary agar halaman tidak crash total */}
-      <ErrorBoundary>
-        <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
-          <DialogContent
-            className="w-[95vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl max-h-[90vh] overflow-y-auto p-0 rounded-2xl border-0 shadow-2xl notranslate"
-            showCloseButton={false}
-            translate="no"
-          >
-            <DialogTitle className="sr-only">Product Details</DialogTitle>
-            <DialogDescription className="sr-only">
-              Detailed specs for {selectedProduct?.name}
-            </DialogDescription>
-
-            <DialogClose
-              translate="no"
-              className="absolute right-4 top-4 z-30 rounded-full bg-[#003366] p-2 text-white hover:scale-105 transition-all"
-            >
-              <X className="h-5 w-5" />
-              <span className="sr-only">Close</span>
-            </DialogClose>
-
-            {selectedProduct && (
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Image Panel */}
-                <div className="relative bg-white flex flex-col min-h-[300px] lg:min-h-full">
-                  <div
-                    className={`relative flex-1 overflow-hidden cursor-zoom-in ${imageZoomed ? "cursor-zoom-out" : ""}`}
-                    onClick={() => setImageZoomed(!imageZoomed)}
-                  >
-                    <Image
-                      src={selectedProduct.image}
-                      alt={selectedProduct.name}
-                      fill
-                      className={`object-contain transition-transform duration-500 ${imageZoomed ? "scale-150" : "scale-100"}`}
-                    />
-                    <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
-                      <ZoomIn className="h-3 w-3" />
-                      <span translate="no">{imageZoomed ? "Zoom out" : "Zoom in"}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Detail Panel */}
-                <div className="p-6 md:p-12 bg-white flex flex-col">
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
-                    <span translate="no">{selectedProduct.name}</span>
-                  </h2>
-
-                  <div className="flex gap-2 mb-8">
-                    <Badge variant="secondary" translate="no">
-                      {selectedProduct.category}
-                    </Badge>
-                    <Badge variant="outline" translate="no">
-                      MOQ: {selectedProduct.moq}
-                    </Badge>
-                  </div>
-
-                  <div className="mb-8">
-                    <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-2">
-                      <span translate="no">Description</span>
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      <span translate="no">{selectedProduct.description}</span>
-                    </p>
-                  </div>
-
-                  <div className="mb-8">
-                    <h3 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-4">
-                      <span translate="no">Specifications</span>
-                    </h3>
-                    <div className="bg-muted rounded-xl p-4 space-y-2">
-                      {selectedProduct.specifications.map((spec, i) => (
-                        <div
-                          key={i}
-                          className="flex justify-between border-b border-border/50 py-2 last:border-0"
-                        >
-                          <span className="font-semibold text-xs md:text-sm">
-                            <span translate="no">{spec.label}</span>
-                          </span>
-                          <span className="text-gray-600 text-xs md:text-sm">
-                            <span translate="no">{spec.value}</span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold"
-                  >
-                    <Link href="/#contact">
-                      <span translate="no">REQUEST QUOTE</span>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
-      </ErrorBoundary>
     </main>
   )
 }
