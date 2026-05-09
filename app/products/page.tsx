@@ -122,7 +122,7 @@ function ProductsContent() {
       </Collapsible>
       {hasActiveFilters && (
         <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full mt-4">
-          Clear All Filters
+          <span>Clear All Filters</span>
         </Button>
       )}
     </div>
@@ -217,7 +217,7 @@ function ProductsContent() {
                     <Badge
                       className={`absolute top-2 left-2 text-[10px] ${product.badge === "Premium" ? "bg-primary" : "bg-[#003366]"}`}
                     >
-                      {product.badge}
+                      <span>{product.badge}</span>
                     </Badge>
                   </div>
                   <div className="p-3 flex flex-col flex-grow">
@@ -228,7 +228,7 @@ function ProductsContent() {
                       MOQ: {product.moq}
                     </p>
                     <div className="mt-auto bg-secondary text-secondary-foreground text-xs font-medium py-2 px-4 rounded-md text-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      View Details
+                      <span>View Details</span>
                     </div>
                   </div>
                 </a>
@@ -241,7 +241,7 @@ function ProductsContent() {
                   No products found matching your criteria.
                 </p>
                 <Button variant="outline" onClick={clearAllFilters}>
-                  Clear All Filters
+                  <span>Clear All Filters</span>
                 </Button>
               </div>
             )}

@@ -51,7 +51,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           {/* Tombol Back */}
           <Link href="/products" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary mb-8 transition-colors">
             <ChevronLeft className="mr-1 h-4 w-4" />
-            Back to All Products
+            <span>Back to All Products</span>
           </Link>
 
           <div className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden">
@@ -127,7 +127,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                     className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold text-base shadow-md hover:shadow-lg transition-all"
                   >
                     <Link href="/#contact">
-                      REQUEST QUOTE FOR THIS PRODUCT
+                      <span>REQUEST QUOTE FOR THIS PRODUCT</span>
                     </Link>
                   </Button>
                 </div>
