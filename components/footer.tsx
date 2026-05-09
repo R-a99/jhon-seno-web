@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link" // <-- Hapus atau nonaktifkan karena kita pakai tag <a>
 import Image from "next/image"
 
 const footerLinks = {
@@ -25,7 +25,7 @@ export function Footer() {
             
             {/* Logo dan Teks Footer dirata-tengahkan */}
             <div className="mb-6 flex flex-col items-center lg:items-start">
-              <Link href="/" className="flex flex-col items-center w-max">
+              <a href="/" className="flex flex-col items-center w-max"> {/* <-- Ganti Link jadi a */}
                 {/* Ukuran diubah agar rasio 1:1 (kotak) */}
                 <div className="relative h-16 w-16 md:h-20 md:w-20 mb-3">
                   <Image 
@@ -35,11 +35,11 @@ export function Footer() {
                     className="object-contain hover:opacity-80 transition-opacity brightness-0 invert"
                   />
                 </div>
-                {/* Teks di bawah logo, rata tengah */}
+                {/* Teks di bawah logo, rata tengah (sudah ada span-nya jadi aman) */}
                 <span className="font-bold text-xl tracking-wide text-white text-center">
                   Jhon Seno Company
                 </span>
-              </Link>
+              </a>
             </div>
             
             <p className="text-primary-foreground/80 leading-relaxed max-w-md text-center lg:text-left mx-auto lg:mx-0">
@@ -53,12 +53,12 @@ export function Footer() {
             <ul className="space-y-3 text-center lg:text-left">
               {footerLinks.products.map((link) => (
                 <li key={link.label}>
-                  <Link
+                  <a // <-- Ganti Link jadi a
                     href={link.href}
                     className="text-primary-foreground/80 hover:text-white transition-colors"
                   >
-                    {link.label}
-                  </Link>
+                    <span>{link.label}</span> {/* <-- Bungkus label dengan span */}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -70,12 +70,12 @@ export function Footer() {
             <ul className="space-y-3 text-center lg:text-left">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link
+                  <a // <-- Ganti Link jadi a
                     href={link.href}
                     className="text-primary-foreground/80 hover:text-white transition-colors"
                   >
-                    {link.label}
-                  </Link>
+                    <span>{link.label}</span> {/* <-- Bungkus label dengan span */}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -88,12 +88,12 @@ export function Footer() {
               <li>Temanggung, Central Java</li>
               <li>
                 <a href="https://wa.me/6285144911198" className="hover:text-white transition-colors">
-                  +62 851-4491-1198
+                  <span>+62 851-4491-1198</span> {/* <-- Opsional tapi baik dibungkus span */}
                 </a>
               </li>
               <li>
                 <a href="mailto:inquiry@jhonsenokompany.me" className="hover:text-white transition-colors break-all">
-                  inquiry@jhonsenokompany.me
+                  <span>inquiry@jhonsenokompany.me</span> {/* <-- Opsional tapi baik dibungkus span */}
                 </a>
               </li>
             </ul>
@@ -104,7 +104,7 @@ export function Footer() {
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 pb-4 md:pb-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/60 text-sm text-center md:text-left">
-              &copy; {new Date().getFullYear()} Jhon Seno Company. All rights reserved.
+              <span>&copy; {new Date().getFullYear()} Jhon Seno Company. All rights reserved.</span>
             </p>
           </div>
         </div>
