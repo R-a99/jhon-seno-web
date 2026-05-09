@@ -47,14 +47,16 @@ export function Header() {
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
-                {link.label}
+                <span>{link.label}</span>
               </Link>
             ))}
           </div>
 
           <div className="hidden lg:block">
             <Button asChild size="sm">
-              <Link href="#contact">Request Quote</Link>
+              <Link href="#contact">
+                <span>Request Quote</span>
+              </Link>
             </Button>
           </div>
 
@@ -83,12 +85,12 @@ export function Header() {
                   className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
                 </Link>
               ))}
               <Button asChild className="mt-2 w-full">
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                  Request Quote
+                  <span>Request Quote</span>
                 </Link>
               </Button>
             </div>
