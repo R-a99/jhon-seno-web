@@ -18,35 +18,39 @@ export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 lg:px-8 py-16">
-        {/* Grid diubah menjadi 5 kolom agar distribusi ruang lebih seimbang di kanan */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           
           {/* Brand - Mengambil 2 kolom */}
           <div className="lg:col-span-2">
-            {/* Box putih dihilangkan agar logo menyatu dengan background */}
-            <div className="mb-6 inline-block">
-              <Link href="/">
-                <div className="relative h-12 w-28 md:h-14 md:w-32">
-                  {/* Penambahan 'brightness-0 invert' agar logo otomatis menjadi solid putih */}
+            
+            {/* Logo dan Teks Footer dirata-tengahkan */}
+            <div className="mb-6 flex flex-col items-center lg:items-start">
+              <Link href="/" className="flex flex-col items-center w-max">
+                {/* Ukuran diubah agar rasio 1:1 (kotak) */}
+                <div className="relative h-16 w-16 md:h-20 md:w-20 mb-3">
                   <Image 
-                    src="/images/logo1.png" 
+                    src="/images/logo2.png" // Sesuaikan nama file logo Anda jika berbeda
                     alt="Jhon Seno Company Logo" 
                     fill
                     className="object-contain hover:opacity-80 transition-opacity brightness-0 invert"
                   />
                 </div>
+                {/* Teks di bawah logo, rata tengah */}
+                <span className="font-bold text-xl tracking-wide text-white text-center">
+                  Jhon Seno Company
+                </span>
               </Link>
             </div>
             
-            <p className="text-primary-foreground/80 leading-relaxed max-w-md">
+            <p className="text-primary-foreground/80 leading-relaxed max-w-md text-center lg:text-left mx-auto lg:mx-0">
               Your Trusted Source for High-Quality Javanese Commodities and Indonesian Export Products. From Specialty Coffee and Spices to Sustainable Bioenergy, All Meeting Your Market Standards.
             </p>
           </div>
 
           {/* Products - 1 kolom */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Products</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-lg mb-4 text-center lg:text-left">Products</h4>
+            <ul className="space-y-3 text-center lg:text-left">
               {footerLinks.products.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -62,8 +66,8 @@ export function Footer() {
 
           {/* Company - 1 kolom */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-lg mb-4 text-center lg:text-left">Company</h4>
+            <ul className="space-y-3 text-center lg:text-left">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -77,10 +81,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Reach Us (Tambahan Baru) - 1 kolom untuk menyeimbangkan whitespace */}
+          {/* Reach Us - 1 kolom */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Reach Us</h4>
-            <ul className="space-y-3 text-primary-foreground/80">
+            <h4 className="font-semibold text-lg mb-4 text-center lg:text-left">Reach Us</h4>
+            <ul className="space-y-3 text-primary-foreground/80 text-center lg:text-left">
               <li>Temanggung, Central Java</li>
               <li>
                 <a href="https://wa.me/6285144911198" className="hover:text-white transition-colors">
@@ -102,7 +106,6 @@ export function Footer() {
             <p className="text-primary-foreground/60 text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} Jhon Seno Company. All rights reserved.
             </p>
-            {/* Optional: Bisa ditambah link kecil seperti Privacy Policy di sini jika ada nantinya */}
           </div>
         </div>
       </div>

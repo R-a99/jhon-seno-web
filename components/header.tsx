@@ -19,19 +19,24 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-white/10 shadow-sm">
       <nav className="container mx-auto px-4 lg:px-8">
-        {/* Tinggi header disesuaikan menjadi h-16 secara seragam agar lebih ramping */}
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center">
-            {/* Ukuran logo diperkecil agar proporsional dengan tinggi header */}
-            <div className="relative h-9 w-20 md:h-10 md:w-24">
+          
+          {/* Logo & Text Header */}
+          <Link href="/" className="flex items-center gap-3">
+            {/* Ukuran disesuaikan menjadi rasio 1:1 (kotak) agar logo baru terlihat pas */}
+            <div className="relative h-10 w-10 md:h-12 md:w-12">
               <Image 
-                src="/images/logo1.png" 
+                src="/images/logo2.png" // Sesuaikan nama file logo Anda jika berbeda
                 alt="Jhon Seno Company Logo" 
                 fill
                 className="object-contain hover:opacity-90 transition-opacity"
                 priority 
               />
             </div>
+            {/* Teks di samping logo */}
+            <span className="font-bold text-lg md:text-xl hidden sm:block text-foreground">
+              Jhon Seno Company
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
