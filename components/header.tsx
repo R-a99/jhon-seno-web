@@ -26,7 +26,7 @@ export function Header() {
             {/* Ukuran disesuaikan menjadi rasio 1:1 (kotak) agar logo baru terlihat pas */}
             <div className="relative h-10 w-10 md:h-12 md:w-12">
               <Image 
-                src="/images/logo2.png" // Sesuaikan nama file logo Anda jika berbeda
+                src="/images/logo1.png" // Sesuaikan nama file logo Anda jika berbeda
                 alt="Jhon Seno Company Logo" 
                 fill
                 className="object-contain hover:opacity-90 transition-opacity"

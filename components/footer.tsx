@@ -29,7 +29,7 @@ export function Footer() {
                 {/* Ukuran diubah agar rasio 1:1 (kotak) */}
                 <div className="relative h-16 w-16 md:h-20 md:w-20 mb-3">
                   <Image 
-                    src="/images/logo2.png" // Sesuaikan nama file logo Anda jika berbeda
+                    src="/images/logo1.png" // Sesuaikan nama file logo Anda jika berbeda
                     alt="Jhon Seno Company Logo" 
                     fill
                     className="object-contain hover:opacity-80 transition-opacity brightness-0 invert"
