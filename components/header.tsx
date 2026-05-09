@@ -25,7 +25,7 @@ export function Header() {
             {/* Ukuran logo diperkecil agar proporsional dengan tinggi header */}
             <div className="relative h-9 w-20 md:h-10 md:w-24">
               <Image 
-                src="/images/logo.png" 
+                src="/images/logo.jpeg" 
                 alt="Jhon Seno Company Logo" 
                 fill
                 className="object-contain hover:opacity-90 transition-opacity"
