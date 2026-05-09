@@ -29,7 +29,7 @@ export function Footer() {
                 <div className="relative h-12 w-28 md:h-14 md:w-32">
                   {/* Penambahan 'brightness-0 invert' agar logo otomatis menjadi solid putih */}
                   <Image 
-                    src="/images/logo.png" 
+                    src="/images/logo1.png" 
                     alt="Jhon Seno Company Logo" 
                     fill
                     className="object-contain hover:opacity-80 transition-opacity brightness-0 invert"
