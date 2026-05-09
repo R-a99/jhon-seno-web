@@ -1,10 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+// import Link from "next/link" // <-- Hapus atau nonaktifkan ini karena kita pakai tag <a> biasa
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -22,41 +22,39 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           
           {/* Logo & Text Header */}
-          <Link href="/" className="flex items-center gap-3">
-            {/* Ukuran disesuaikan menjadi rasio 1:1 (kotak) agar logo baru terlihat pas */}
+          <a href="/" className="flex items-center gap-3"> {/* <-- Ganti Link jadi a */}
             <div className="relative h-10 w-10 md:h-12 md:w-12">
               <Image 
-                src="/images/logo1.png" // Sesuaikan nama file logo Anda jika berbeda
+                src="/images/logo1.png" 
                 alt="Jhon Seno Company Logo" 
                 fill
                 className="object-contain hover:opacity-90 transition-opacity"
                 priority 
               />
             </div>
-            {/* Teks di samping logo */}
             <span className="font-bold text-lg md:text-xl hidden sm:block text-foreground">
               Jhon Seno Company
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
+              <a // <-- Ganti Link jadi a
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 <span>{link.label}</span>
-              </Link>
+              </a>
             ))}
           </div>
 
           <div className="hidden lg:block">
             <Button asChild size="sm">
-              <Link href="#contact">
+              <a href="/#contact"> {/* <-- Ganti Link jadi a, dan pastikan href-nya lengkap /#contact */}
                 <span>Request Quote</span>
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -79,19 +77,19 @@ export function Header() {
           <div className="lg:hidden py-4 border-t border-white/10">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <Link
+                <a // <-- Ganti Link jadi a
                   key={link.href}
                   href={link.href}
                   className="text-base font-medium text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>{link.label}</span>
-                </Link>
+                </a>
               ))}
               <Button asChild className="mt-2 w-full">
-                <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                <a href="/#contact" onClick={() => setMobileMenuOpen(false)}> {/* <-- Ganti Link jadi a */}
                   <span>Request Quote</span>
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
