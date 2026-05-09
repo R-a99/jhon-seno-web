@@ -12,9 +12,9 @@ const categories = [
     description: "Sustainable energy solutions from premium Indonesian coconut products.",
     featuredImage: "/images/bioenergy.png",
     products: [
-      { name: "Coconut Shell Charcoal Briquettes", image: "/images/bricket.png", description: "100% Pure Premium Indonesian Coconut Shell Charcoal Briquettes, producing superior smokeless heat." },
-      { name: "Cocopeat", image: "/images/cocopeat.png", description: "100% Renewable and Environmentally Friendly Growing Medium." },
-      { name: "Cocofiber", image: "/images/cocofiber.png", description: "High-Quality Coconut Fiber that is durable and versatile." },
+      { name: "Coconut Shell Charcoal Briquettes", image: "/images/bricket1.png", description: "100% Pure Premium Indonesian Coconut Shell Charcoal Briquettes, producing superior smokeless heat." },
+      { name: "Cocopeat", image: "/images/cocopeat1.png", description: "100% Renewable and Environmentally Friendly Growing Medium." },
+      { name: "Cocofiber", image: "/images/cocofiber1.png", description: "High-Quality Coconut Fiber that is durable and versatile." },
     ],
   },
   {
@@ -23,9 +23,9 @@ const categories = [
     description: "Authentic and premium spices sourced directly from local Indonesian farmers.",
     featuredImage: "/images/rempah.png",
     products: [
-      { name: "Cloves", image: "/images/cengkeh.png", description: "Whole cloves with a rich aroma and sweet-spicy taste." },
-      { name: "Cardamom", image: "/images/kopilaga.png", description: "Premium cardamom with a warm, fresh aroma and high essential oil content." },
-      { name: "Turmeric", image: "/images/temulawak.png", description: "Turmeric with maximum bioactive compounds for health benefits." },
+      { name: "Cloves", image: "/images/cengkeh1.png", description: "Whole cloves with a rich aroma and sweet-spicy taste." },
+      { name: "Cardamom", image: "/images/kopulaga1.png", description: "Premium cardamom with a warm, fresh aroma and high essential oil content." },
+      { name: "Turmeric", image: "/images/temulawak1.png", description: "Turmeric with maximum bioactive compounds for health benefits." },
     ],
   },
   {
@@ -34,7 +34,7 @@ const categories = [
     description: "Sustainable and high-quality agricultural products for export.",
     featuredImage: "/images/kopi1.jpg",
     products: [
-      { name: "Robusta Coffee", image: "/images/kopi.png", description: "High-quality Robusta coffee from Indonesia's lowlands with a bold flavor." },
+      { name: "Robusta Coffee", image: "/images/kopi1.png", description: "High-quality Robusta coffee from Indonesia's lowlands with a bold flavor." },
     ],
   },
 ]
