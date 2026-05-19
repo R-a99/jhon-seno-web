@@ -22,8 +22,9 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           
           {/* Logo & Text Header */}
-          <a href="/" className="flex items-center gap-3"> {/* <-- Ganti Link jadi a */}
-            <div className="relative h-10 w-10 md:h-12 md:w-12">
+          <a href="/" className="flex items-center gap-2 md:gap-3"> 
+            {/* Tambahkan shrink-0 agar logo tidak mengecil jika teksnya panjang */}
+            <div className="relative h-10 w-10 md:h-12 md:w-12 shrink-0">
               <Image 
                 src="/images/logo1.png" 
                 alt="Jhon Seno Company Logo" 
@@ -32,7 +33,8 @@ export function Header() {
                 priority 
               />
             </div>
-            <span className="font-bold text-lg md:text-xl hidden sm:block text-foreground">
+            {/* Hapus "hidden sm:block", ubah ukuran teks jadi text-sm di mobile, dan tambah truncate */}
+            <span className="font-bold text-sm sm:text-lg md:text-xl text-foreground truncate">
               Jhon Seno Company
             </span>
           </a>
