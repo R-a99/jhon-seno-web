@@ -73,7 +73,8 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </div>
 
               {/* Detail Panel */}
-              <div className="p-8 md:p-12 flex flex-col">
+              {/* Penyesuaian: Ubah p-8 menjadi p-5 di mobile, dan tambah pb-24 agar konten tidak tertutup tombol sticky */}
+              <div className="p-5 sm:p-8 md:p-12 flex flex-col pb-24 md:pb-12">
                 <h1 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
                   {product.name}
                 </h1>
@@ -94,7 +95,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   <h2 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-3">
                     Description
                   </h2>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                     {product.description}
                   </p>
                 </div>
@@ -103,16 +104,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   <h2 className="text-sm font-semibold text-[#003366] uppercase tracking-wider mb-4">
                     Specifications
                   </h2>
-                  <div className="bg-muted/50 rounded-xl p-5 space-y-3 border border-border/50">
+                  {/* Penyesuaian: p-4 untuk mobile agar box tidak terlalu memakan lebar layar */}
+                  <div className="bg-muted/50 rounded-xl p-4 sm:p-5 space-y-3 border border-border/50">
                     {product.specifications.map((spec, i) => (
                       <div
                         key={i}
-                        className="flex justify-between border-b border-border/50 pb-3 last:border-0 last:pb-0"
+                        // Penyesuaian: Tambah gap-4 dan items-start agar aman di layar super kecil
+                        className="flex justify-between items-start gap-4 border-b border-border/50 pb-3 last:border-0 last:pb-0"
                       >
-                        <span className="font-semibold text-sm text-foreground/80">
+                        {/* Penyesuaian: shrink-0 memastikan label tidak terlipat */}
+                        <span className="font-semibold text-sm text-foreground/80 shrink-0">
                           {spec.label}
                         </span>
-                        <span className="text-gray-600 text-sm text-right max-w-[60%]">
+                        {/* Penyesuaian: break-words memastikan teks panjang membungkus ke bawah dengan rapi */}
+                        <span className="text-gray-600 text-sm text-right break-words">
                           {spec.value}
                         </span>
                       </div>
@@ -120,11 +125,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   </div>
                 </div>
 
-                <div className="mt-auto">
+                {/* Penyesuaian Tombol: Dibuat Sticky di mobile, kembali normal di Desktop */}
+                <div className="mt-auto fixed md:relative bottom-0 left-0 right-0 p-4 md:p-0 bg-white/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-t md:border-none border-border/50 z-50">
                   <Button
                     asChild
-                    size="lg"
-                    className="w-full bg-[#003366] hover:bg-[#002244] py-6 rounded-xl font-bold text-base shadow-md hover:shadow-lg transition-all"
+                    className="w-full bg-[#003366] hover:bg-[#002244] h-14 sm:h-16 rounded-xl font-bold text-sm sm:text-base shadow-lg md:shadow-md hover:shadow-xl transition-all whitespace-normal text-center leading-tight px-4"
                   >
                     <Link href="/#contact">
                       <span>REQUEST QUOTE FOR THIS PRODUCT</span>
